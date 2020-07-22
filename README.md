@@ -1,4 +1,4 @@
-# FizykaZawszeStyka
+## FizykaZawszeStyka
 Projekt strony z wizualizacjami podstawowych zjawisk fizycznych
 mający na celu ułatwienie rozwiązywanie zadań z zakresu fizyki do matury rozszerzonej
 osoby biorące udział w tworzeniu projektu:
@@ -8,5 +8,6 @@ osoby biorące udział w tworzeniu projektu:
 * Marcin Warchoł
 * Paweł Żurawski
 * Jakub Nowakowski
-Kontakt:
+
+#Kontakt:
 jakobn@student.agh.edu.pl
