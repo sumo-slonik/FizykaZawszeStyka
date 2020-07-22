@@ -1,0 +1,78 @@
+#container{
+	margin-left: auto;
+	margin-right: auto;
+	width: 1200px;
+	background-color: #a1d966;
+	height: 100vh;
+	border-radius: 15px;
+	border-style: groove;
+}
+.info_anim{
+	float: left;
+	background-color:#66c46b;
+	border-radius: 15px;
+	font-size: 28px;
+	width: 300px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.con_for_input{
+	float: left;
+	margin-left: 59px;
+	margin-right: 59px;
+	text-align: center;
+}
+.begin{
+	float: left;
+	margin: 15px;
+}
+.info{
+	font-size: 12px;
+	background-color:#66c46b;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+.info1{
+	background-color:#66c46b;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+}
+#start{
+	background-color:#66c46b;
+	margin-right: 480px;
+	margin-left: 480px;
+}
+#welcome{
+	font-size: 28px;
+	text-align: center;
+	background-color:#66c46b;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	letter-spacing: 2px;
+}
+#opor_info{
+	border-radius: 15px;
+	background-color: #66c46b;
+}
+button{
+	border-radius: 15px;
+	background-color: #59b5d4;
+}
+button:hover{
+	background-color: #b3d0ff;
+}
+.value{
+	background-color: white;
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+	width: 140px;
+}
+#time{
+	width: 250px;
+}
+html{
+	font-family: 'Caveat', cursive;
+	background-color: #ededca;
+}
