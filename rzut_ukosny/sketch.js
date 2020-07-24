@@ -109,14 +109,14 @@ function draw(){
     }
   }
   //Gdy uruchomiony został tryb wybierania myszką Vx i Vy, a animacja nie została jeszcze uruchomiona
-  //właściwy układ zaczyna się od 73 piksela w prawo od początku obiektu canvas (dlatego często występuje begin_x + 73)
+  //właściwy układ zaczyna się od 73 piksela w prawo od początku obiektu canvas (dlatego często występuje beginVx + 73)
   else if(mouseX >= 73 && mouseX <= sizeX +73 && mouseY >= 0 && mouseY <= sizeY && !pause || setData && !pause ){
     strokeWeight(3);
     let draw_x; // współrzędna x pukntu względem którego będzie rysowana linia i kropki
     let draw_y; // analogicznie dla współrzędnej y
     if(setData){
       //jeżeli użytkownik kliknął myszką w którymś miejscu układu współrzędnych, a nie były jeszcze ustalone
-      //wartośći Vx i Vy to begin_x i begin_y zostaną zaaktualizowane.
+      //wartośći Vx i Vy to beginVx i beginVy zostaną zaaktualizowane.
       //Innymi słowy, flaga setData aktywna
       draw_x = beginVx + 73;
       draw_y = beginVy + e.y;
@@ -285,7 +285,7 @@ function confirm_angle(){
   confirmed_angle = true;
   if(confirmed_v){ // oblicza tylko wtedy jeżeli ma daną też prędkość początkową
     setData = true;
-    //obliczone początkowe Vx i Vy na podstawie danej prędkości początkowej V i kąta data_angle
+    //obliczone początkowe Vx i Vy na podstawie danej prędkości początkowej V i kąta alfa
     beginVx = v/(Math.sqrt(Math.tan(-angle*Math.PI/180)*Math.tan(-angle*Math.PI/180) + 1));
     beginVy = Math.tan(-angle*Math.PI/180)*v/(Math.sqrt(Math.tan(-angle*Math.PI/180)*Math.tan(-angle*Math.PI/180) + 1));
   }
