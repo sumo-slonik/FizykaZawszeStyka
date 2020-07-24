@@ -72,10 +72,11 @@ function draw(){
       stroke('red');
       curveVertex(e.x,e.y+7); // rysuje czerwony ślad za piłką
       endShape();
-      if(frameUpdate % 10 == 0){ // wyliczenia parametrów animacji i ich wypisanie na ekran (domyślnie co 10 klatek)
+      if(frameUpdate % 7 == 0){ // wyliczenia parametrów animacji i ich wypisanie na ekran (domyślnie co 7 klatek)
         document.getElementById('predkosc').innerHTML = Math.round(velocity(e.Vx, e.Vy) * 100) / 100+"&nbspm/s";
         document.getElementById('wysokosc').innerHTML = Math.round((493-e.y) * 100) / 100+"&nbspm";
         document.getElementById('czas').innerHTML = Math.round(t * 100) / 100+"&nbsps";
+        document.getElementById('odleglosc').innerHTML = Math.round((e.x - 73) * 100) / 100+"&nbspm";
       }
     }
     else{ //jeżeli pauza jest aktywna, to jedynie należy podtrzymać czerwony ślad za piłką
@@ -92,10 +93,9 @@ function draw(){
       e.x += e.Vx*dt -0.5*0.12*e.Vx*dt*dt; // wzór na x(t)
       e.Vx += (e.Ax - 0.12*e.Vx)*dt; // wzór na Vx(t)
       e.Vy += (e.Ay - 0.12*e.Vy)*dt; // wzór na Vy(t)
-      if(e.y >= sizeY-7){ // jeżeli piłka dotknie ziemi, to odbije się od niej zachowując 60% prędkośći
+      if(e.y >= sizeY-7 && e.Vy >= 0){ // jeżeli piłka dotknie ziemi, to odbije się od niej zachowując 60% prędkośći
         e.Vy = -Math.abs(e.Vy*0.6);
       }
-      if(e.y >= sizeY-7) e.y = sizeY-7; // zapobiega odbijaniu się piłki w nieskończoność
     }
     else{ // analogiczne wzory, jeżeli nie ma oporu ośrodka
       e.y += e.Vy*dt -0.5*9.81*dt*dt;
@@ -224,7 +224,7 @@ function mouseReleased(){
 }
 
 function  mouseDragged(){
-  if(!startedAnimation && moveBall){
+  if(!startedAnimation && moveBall && mouseY >= 0 && mouseY <= 493){
     e.y = mouseY;
     document.getElementById('height').value = 493 - e.y;
   }
@@ -255,7 +255,11 @@ function stop(){
   document.getElementById('predkosc').innerHTML = "0.00&nbspm/s";
   document.getElementById('wysokosc').innerHTML = "0.00&nbspm";
   document.getElementById('czas').innerHTML = "0.00&nbsps";
+  document.getElementById('odleglosc').innerHTML = "0,00&nbspm";
   t=0;
+  beginVx = 0;
+  beginVy = 0;
+  setData = false;
   beginShape();
 }
 
@@ -308,8 +312,6 @@ function confirm_velocity(){
     setData = true;
     beginVx = v/(Math.sqrt(Math.tan(-angle*Math.PI/180)*Math.tan(-angle*Math.PI/180) + 1));
     beginVy = Math.tan(-angle*Math.PI/180)*v/(Math.sqrt(Math.tan(-angle*Math.PI/180)*Math.tan(-angle*Math.PI/180) + 1));
-    console.log(beginVx);
-    console.log(beginVy);
   }
 }
 
@@ -318,7 +320,7 @@ function confirm_height(){
   height = document.getElementById('height').value;
   height = height.replace(",",".");
   let reg = /\d+(\.\d+)?/;
-  if(reg.test(height) && height > 0 && height < 500){
+  if(reg.test(height) && height >= 0 && height <= 500){
     document.getElementById('info_height').style.color = 'black';
   }
   else{

@@ -9,21 +9,28 @@
 <body>
 	<div id = "container">
 		<div id = "welcome">Symulator rzutu ukośnego piłką</div>
-		<div class="info_anim" > &nbspwysokość:
-			<div id="wysokosc" class="value" style="float: right;"> &nbsp0.00 m</div>
-			<div style="clear:both;"></div>
+		<div id="container_data">
+			<div class="info_anim" > &nbspwysokość:
+				<div id="wysokosc" class="value" style="float: right;"> &nbsp0.00 m</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div class = "info_anim" class="value"> &nbspprędkość:
+				<div id="predkosc" class="value" style="float: right;">&nbsp0.00 m/s</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div class = "info_anim" class="value" id="time"> &nbspczas:
+				<div id="czas" class="value" style="float: right;">&nbsp0.00 s</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div class = "info_anim" class="value" id="distance"> &nbspodległość:
+				<div id="odleglosc" class="value" style="float: right;">&nbsp0.00 m</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div style="clear:both"></div>
 		</div>
-		<div class = "info_anim" class="value"> &nbspprędkość:
-			<div id="predkosc" class="value" style="float: right;">&nbsp0.00 m/s</div>
-			<div style="clear:both;"></div>
-		</div>
-		<div class = "info_anim" class="value" id="time"> &nbspczas:
-			<div id="czas" class="value" style="float: right;">&nbsp0.00 s</div>
-			<div style="clear:both;"></div>
-		</div>
-		<div style="clear:both"></div>
 		<div id = "main"></div>
 		<div id = "menu">
+			<!-- potwierdzenie wejścia - confirmation for input -->
 			<div class = "con_for_input">
 				<div class = "info1"> prędkość początkowa [m/s] </div>
 				<input id="velocity" type="text" class = "input"></input>
@@ -42,7 +49,7 @@
 				<button class = "input" id="h" onclick="confirm_height()"> OK </button>
 				<div class="info" id="info_height"> liczba z przedziału (0,500) </div>
 			</div>
-			<div class = "con_for_input">
+			<div class = "con_for_input"> 
 				<div id="opor_info"> opór ośrodka<br>&nbsp(na przykład powietrza)&nbsp</div>
 				<input type="checkbox" id="check_air"></input>
 			</div>
@@ -52,6 +59,7 @@
 			<button id="start_button" class="begin" onclick="start()">start</button>
 			<button id="pause_button" class="begin" onclick="pause_f()">pauza</button>
 			<button id="reset_button" class="begin" onclick="stop()">reset</button>
+			<div style="clear:both"></div>
 		</div>
 	</div>
 

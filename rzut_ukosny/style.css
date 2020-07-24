@@ -1,32 +1,33 @@
+body{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
 #container{
 	margin-left: auto;
 	margin-right: auto;
-	width: 1200px;
+	width: 1140px;
 	background-color: #a1d966;
-	height: 100vh;
 	border-radius: 15px;
 	border-style: groove;
 }
+
 .info_anim{
 	float: left;
 	background-color:#66c46b;
 	border-radius: 15px;
 	font-size: 28px;
-	width: 300px;
-	margin-bottom: 20px;
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-right: 20px;
+	width: 240px;
+	margin: 20px;
 }
 .con_for_input{
 	float: left;
-	margin-left: 59px;
-	margin-right: 59px;
+	margin-left: 40px;
+	margin-right: 40px;
 	text-align: center;
 }
 .begin{
 	float: left;
-	margin: 15px;
+	margin-left: 15px;
 }
 .info{
 	font-size: 12px;
@@ -34,15 +35,23 @@
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
 }
+#menu{
+	margin-left: auto;
+	margin-right: auto;
+	width: 1060px;
+}
 .info1{
 	background-color:#66c46b;
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 }
 #start{
-	background-color:#66c46b;
-	margin-right: 480px;
-	margin-left: 480px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: 250px;
+	height: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 #welcome{
 	font-size: 28px;
