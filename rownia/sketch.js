@@ -30,6 +30,6 @@ function draw() {
 
 function confirm_h() {
     height = document.getElementById('height').value;
-    height *=  87;
+    height *=  97;
 
 }
