@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="p5.min.js"></script>
+    <script src="sketch.js"></script>
+</head>
+<body>
+<div id="container">
+    <div id="title">
+        <h1>
+            Równia pochyła
+        </h1>
+    </div>
+    <div id="none_1" class="info_anim"></div>
+    <div id="velocity" class="info_anim">
+        prędkość
+    </div>
+    <div id="time" class="info_anim">
+        czas
+    </div>
+    <div id="none_2" class="info_anim"></div>
+    <div style="clear:both"></div>
+    <div id="border">
+        <div id="main"></div>
+    </div>
+    <div id="menu">
+        <div class="con_for_input">
+            <div class="info1"> wysokość równi [m] </div>
+            <input id="height" type="text" class="input" value="Wpisz wysokość">
+            <button class="input" id="height_button" onclick="confirm_h()"> OK</button>
+            <div class="info" id="info_heigth"> Liczba z przedziału (0;5)</div>
+        </div>
+        <div class="con_for_input">
+            <div class="info1"> kąt nachylenia równi [°]</div>
+            <input id="angle" type="text" class="input" value="Wpisz kąt nachylenia">
+            <button class="input" id="angle_button" onclick="confirm_a"> OK</button>
+            <div class="info" id="info_angle"> Liczba z przedziału (0;90)</div>
+        </div>
+        <div class="con_for_input">
+            <div class="info1"> masa klocka [kg]</div>
+            <input id="mass" type="text" class="input" value="Wpisz mase klocka">
+            <button class="input" id="mass_button" onclick="confirm_m"> OK</button>
+            <div class="info" id="info_angle"> Liczba z przedziału (0;100)</div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
