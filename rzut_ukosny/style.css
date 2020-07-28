@@ -3,6 +3,9 @@ body{
 	margin-bottom: 0px;
 }
 #container{
+	-webkit-box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
 	margin-left: auto;
 	margin-right: auto;
 	width: 1140px;
@@ -66,8 +69,8 @@ body{
 	background-color: #66c46b;
 }
 button{
-	border-radius: 15px;
 	background-color: #59b5d4;
+	border-radius: 15px;
 }
 button:hover{
 	background-color: #b3d0ff;
@@ -84,4 +87,16 @@ button:hover{
 html{
 	font-family: 'Caveat', cursive;
 	background-color: #ededca;
+}
+
+.con_for_input > button{
+	border-radius: 0px;
+	margin: 0px;
+}
+.input_text{
+	margin: 0px;
+}
+
+#text{
+	font-size: 1px;
 }
