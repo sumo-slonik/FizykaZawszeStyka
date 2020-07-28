@@ -89,7 +89,7 @@ function draw(){
     endShape();
     frameUpdate += 1;
     // domyślnie współczynnik oporu został przyjęty na 0.12
-    if($('#check_air').checked == true){ // jeżeli zaznaczony został opór ośrodka
+    if($('#check_air')[0].checked == true){ // jeżeli zaznaczony został opór ośrodka
       e.y += e.Vy*dt + 0.5*0.12*e.Vy*dt*dt -0.5*9.81*dt*dt; // wzór na y(t) 
       e.x += e.Vx*dt -0.5*0.12*e.Vx*dt*dt; // wzór na x(t)
       e.Vx += (e.Ax - 0.12*e.Vx)*dt; // wzór na Vx(t)
@@ -97,8 +97,10 @@ function draw(){
       if(e.y >= sizeY-7 && e.Vy >= 0){ // jeżeli piłka dotknie ziemi, to odbije się od niej zachowując 60% prędkośći
         e.Vy = -Math.abs(e.Vy*0.6);
       }
+      console.log("z oporem");
     }
     else{ // analogiczne wzory, jeżeli nie ma oporu ośrodka
+      console.log("bez oporu");
       e.y += e.Vy*dt -0.5*9.81*dt*dt;
       e.x += e.Vx*dt;
       e.Vx += e.Ax*dt;
