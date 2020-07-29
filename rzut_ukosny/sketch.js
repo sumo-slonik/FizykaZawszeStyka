@@ -74,8 +74,8 @@ function draw(){
       curveVertex(e.x,e.y+7); // rysuje czerwony ślad za piłką
       endShape();
       if(frameUpdate % 7 == 0){ // wyliczenia parametrów animacji i ich wypisanie na ekran (domyślnie co 7 klatek)
-        $('#predkosc')[0].innerHTML = Math.round(velocity(e.Vx, e.Vy) * 100) / 100+"&nbspm/s";
-        $('#wysokosc')[0].innerHTML = Math.round((493-e.y) * 100) / 100+"&nbspm";
+        $('#predkosc')[0].innerHTML = Math.round((velocity(e.Vx, e.Vy))* 100) / 100+"&nbspm/s";
+        $('#wysokosc')[0].innerHTML = Math.round(((493-e.y) < 0.2 ? 0 : 493-e.y) * 100) / 100+"&nbspm";
         $('#czas')[0].innerHTML = Math.round(t * 100) / 100+"&nbsps";
         $('#odleglosc')[0].innerHTML = Math.round((e.x - 73) * 100) / 100+"&nbspm";
       }
@@ -93,18 +93,25 @@ function draw(){
       e.y += e.Vy*dt + 0.5*0.12*e.Vy*dt*dt -0.5*9.81*dt*dt; // wzór na y(t) 
       e.x += e.Vx*dt -0.5*0.12*e.Vx*dt*dt; // wzór na x(t)
       e.Vx += (e.Ax - 0.12*e.Vx)*dt; // wzór na Vx(t)
-      e.Vy += (e.Ay - 0.12*e.Vy)*dt; // wzór na Vy(t)
-      if(e.y >= sizeY-7 && e.Vy >= 0){ // jeżeli piłka dotknie ziemi, to odbije się od niej zachowując 60% prędkośći
+      if(Math.abs(e.Vy) < 0.2 && e.y >= sizeY - 8){
+        e.Vy = 0;
+        e.y = sizeY -7;
+      }
+      else e.Vy += (e.Ay - 0.12*e.Vy)*dt; // wzór na Vy(t)
+      if(e.y >= sizeY-7 && e.Vy >= 0 && e.Vy != 0){ // jeżeli piłka dotknie ziemi, to odbije się od niej zachowując 60% prędkośći
         e.Vy = -Math.abs(e.Vy*0.6);
       }
-      console.log("z oporem");
+      if(e.y >= sizeY-7) e.y = sizeY-7;
     }
     else{ // analogiczne wzory, jeżeli nie ma oporu ośrodka
-      console.log("bez oporu");
       e.y += e.Vy*dt -0.5*9.81*dt*dt;
       e.x += e.Vx*dt;
       e.Vx += e.Ax*dt;
-      e.Vy += e.Ay*dt;
+      if(Math.abs(e.Vy) < 0.2 && e.y >= sizeY - 8){
+        e.Vy = 0;
+        e.y = sizeY -7;
+      }
+      else e.Vy += e.Ay*dt;
       if(e.y >= sizeY-7){
         e.Vy = -Math.abs(e.Vy*0.6);
       }
