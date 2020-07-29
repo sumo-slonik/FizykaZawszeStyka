@@ -7,7 +7,8 @@ body{
 	margin: 0px;
 	height: 100%;
 	font-family: 'Caveat', cursive;
-	background-color: #ededca;
+	background-color: #000000;
+	color: rgba(232, 232, 233, 0.9);
 	text-align: center;
 }
 #container{
@@ -17,14 +18,14 @@ body{
 	margin: auto;
 	display: inline-block;
 	width: 1140px;
-	background-color: #a1d966;
+	background-color: #5b5f6e;
 	border-radius: 15px;
 	border-style: groove;
 }
 
 .info_anim{
 	float: left;
-	background-color:#66c46b;
+	background-color:#454a5c;
 	border-radius: 15px;
 	font-size: 28px;
 	width: 240px;
@@ -42,7 +43,7 @@ body{
 }
 .info{
 	font-size: 12px;
-	background-color:#66c46b;
+	background-color:#454a5c;
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
 }
@@ -52,7 +53,7 @@ body{
 	width: 1060px;
 }
 .info1{
-	background-color:#66c46b;
+	background-color:#454a5c;
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 }
@@ -67,14 +68,14 @@ body{
 #welcome{
 	font-size: 28px;
 	text-align: center;
-	background-color:#66c46b;
+	background-color:#454a5c;
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 	letter-spacing: 2px;
 }
 #opor_info{
 	border-radius: 15px;
-	background-color: #66c46b;
+	background-color: #454a5c;
 }
 button{
 	background-color: #59b5d4;
@@ -85,6 +86,7 @@ button:hover{
 }
 .value{
 	background-color: white;
+	color: #5b5f6e;
 	border-bottom-right-radius: 15px;
 	border-top-right-radius: 15px;
 	width: 140px;
