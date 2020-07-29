@@ -10,12 +10,11 @@ let force_s = 0;
 let first_time = true;
 let mass = 1;
 let getDown = false;
-
+let startedAnimation = false;
 function degrees_to_radians(degrees) {
     var pi = Math.PI;
     return degrees * (pi / 180);
 }
-
 function setup() {
     myCanvas = createCanvas(1100, 600);
     myCanvas.parent('main');
@@ -27,7 +26,6 @@ function setup() {
     kostka = new Brick(104, 500, 1);
     rownia = new Inclined(55, 550, 55, 550, 55, 550);
 }
-
 function draw() {
     background(img);
     rownia.second = createVector(55, 550 - height);
@@ -40,25 +38,47 @@ function draw() {
         if (first_time) {
             kostka.position.x = 55;
             kostka.position.y = 550 - height - kostka.wymiar;
+            kostka.velocity.mult(0);
             kostka.rotationAngle = angle;
             kostka.mass = mass;
             first_time = false;
             getDown = false;
         }
-        kostka.checkEdges(rownia);
-        kostka.addForce(force);
-        kostka.update();
-        if (getDown && kostka.rotationAngle > 0) {
+        if (startedAnimation) {
+            $('#Start')[0].disabled = true;
+            $('#Pause')[0].disabled = false;
+            kostka.checkEdges(rownia);
+            kostka.addForce(force);
+            kostka.update();
+            if (getDown && kostka.rotationAngle > 0) {
 
-            kostka.rotationAngle -= 1;
-        } else if (getDown) {
-            kostka.rotationAngle = 0;
+                kostka.rotationAngle -= 1;
+            } else if (getDown) {
+                kostka.rotationAngle = 0;
+            }
+        }
+        else
+        {
+            $('#Pause')[0].disabled = true;
+            $('#Start')[0].disabled = false;
         }
         kostka.display();
     }
 
 }
-
+function start()
+{
+    startedAnimation = true;
+}
+function pause()
+{
+    startedAnimation = false;
+}
+function reset()
+{
+    first_time = true;
+    startedAnimation = false;
+}
 function confirm_h() {
     first_time = true;
     height = document.getElementById('height').value;
@@ -165,3 +185,11 @@ Inclined.prototype.display = function () {
     strokeWeight(this.size);
     triangle(this.first.x, this.first.y, this.second.x, this.second.y, this.third.x, this.third.y);
 }
+$(function(){
+    $('#height_button').click(confirm_h);
+    $('#angle_button').click(confirm_a);
+    $('#mass_button').click(confirm_m);
+    $('#Start').click(start);
+    $('#Pause').click(pause);
+    $('#Reset').click(reset);
+});
