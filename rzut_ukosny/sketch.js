@@ -65,7 +65,7 @@ function draw(){
     fill(255);
     if(e.x <= 1080) { // gdy jeszcze piłka nie wyleciała poza układ współrzędnych
       strokeWeight(1);
-      fill(102);
+      fill(91,95,102);
       ellipse(e.x,e.y,15,15); // rysuje piłkę we wskazanym miejscu o średnicy 15 pikseli
       strokeWeight(3);
       fill(255);
@@ -165,7 +165,7 @@ function draw(){
     //wypisuje obok kropek aktualne wartości Vx i Vy
     text((parseInt(-draw_y + e.y,10)).toString()+'m/s', draw_x,(e.y+draw_y)/2);
     text((parseInt(draw_x - 73)).toString()+'m/s', draw_x/2,draw_y);
-    fill(102);
+    fill(91,95,102);
     strokeWeight(1);
     ellipse(e.x,e.y,15,15);
     strokeWeight(3);
@@ -173,7 +173,7 @@ function draw(){
   }
   //gdy zostanie wciśnięta pauza, należy rysować piłkę w tym samym miejscu i ślad za piłką też
   else{
-    fill(102);
+    fill(91,95,102);
     strokeWeight(1);
     ellipse(e.x,e.y,15,15);
     fill(255);
