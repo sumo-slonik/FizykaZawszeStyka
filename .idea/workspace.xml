@@ -21,9 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3c9c7790-244e-4d23-a0b0-30f445eb22eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rownia/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rownia/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/sketch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rownia/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +32,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1fKlKnldmrj7chtVEkkse2IlLIU" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -43,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FizykaZawszeStyka/rzut_ukosny/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -58,8 +59,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html (2)" />
+        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="Node.js.sketch.js" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
@@ -76,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1595974603319</updated>
       <workItem from="1595974605246" duration="1044000" />
-      <workItem from="1596006812090" duration="12008000" />
+      <workItem from="1596006812090" duration="13752000" />
     </task>
     <servers />
   </component>
@@ -106,9 +107,13 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="484" y="70" key="#sketch.js" timestamp="1596028793521">
+    <state x="484" y="70" key="#sketch.js" timestamp="1596031373226">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="484" y="70" key="#sketch.js/0.0.1536.824@0.0.1536.824" timestamp="1596028793521" />
+    <state x="484" y="70" key="#sketch.js/0.0.1536.824@0.0.1536.824" timestamp="1596031373226" />
+    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596031992294">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1596031992294" />
   </component>
 </project>

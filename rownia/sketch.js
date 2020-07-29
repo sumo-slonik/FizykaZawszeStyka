@@ -9,6 +9,7 @@ let frame = 100;
 let force_s = 0;
 let first_time = true;
 let mass = 1;
+let getDown = false;
 
 function degrees_to_radians(degrees) {
     var pi = Math.PI;
@@ -33,7 +34,7 @@ function draw() {
     rownia.third = createVector(55 + 1 / Math.tan(angle) * height, 550);
     rownia.display();
     force = createVector(0, kostka.mass * 9.81);
-    force.rotate(-((PI/2)-angle));
+    force.rotate(-((PI / 2) - angle));
     force.mult(Math.sin(angle));
     if (accepted_a && accepted_h) {
         if (first_time) {
@@ -42,10 +43,17 @@ function draw() {
             kostka.rotationAngle = angle;
             kostka.mass = mass;
             first_time = false;
+            getDown = false;
         }
         kostka.checkEdges(rownia);
         kostka.addForce(force);
         kostka.update();
+        if (getDown && kostka.rotationAngle > 0) {
+
+            kostka.rotationAngle -= 1;
+        } else if (getDown) {
+            kostka.rotationAngle = 0;
+        }
         kostka.display();
     }
 
@@ -111,13 +119,11 @@ function Brick(x, y, mass) {
 }
 
 Brick.prototype.checkEdges = function (rownia) {
-    if (this.position.x > 1600 || this.position.x < 0 || this.position.y > 600 || this.position.y < 0 || this.position.x > rownia.third.x)
-    {
+    if (this.position.x > 1600 || this.position.x < 0 || this.position.y > 600 || this.position.y < 0 || this.position.x > rownia.third.x) {
         this.velocity.mult(0);
     }
-    if(this.position.x > rownia.third.x)
-    {
-        this.rotationAngle=0;
+    if (this.position.x > rownia.third.x) {
+        getDown = true;
     }
 }
 Brick.prototype.display = function () {
