@@ -20,8 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c9c7790-244e-4d23-a0b0-30f445eb22eb" name="Default Changelist" comment="poprawka kątu obrotu klocka">
-      <change beforePath="$PROJECT_DIR$/.idea/FizykaZawszeStyka.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FizykaZawszeStyka.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rownia/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rownia/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/sketch.js" afterDir="false" />
@@ -91,7 +89,8 @@
       <workItem from="1595974605246" duration="1044000" />
       <workItem from="1596006812090" duration="13899000" />
       <workItem from="1596054513170" duration="7459000" />
-      <workItem from="1596093899693" duration="4007000" />
+      <workItem from="1596093899693" duration="9799000" />
+      <workItem from="1596115556301" duration="3027000" />
     </task>
     <task id="LOCAL-00001" summary="poprawka kątu obrotu klocka">
       <created>1596032038660</created>
