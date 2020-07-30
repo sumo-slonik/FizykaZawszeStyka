@@ -5,92 +5,178 @@
 		<title> Kompendium fizyczne </title>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="X-UA-Compatibile" content="ie-edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		
 		<link rel="stylesheet" href="style.css">
-		<script src="three.js/build/three.js"> </script>
-		
+		<script src="three.js/build/three.js"> </script>	
 	</head>
 
 	<body>
-		<header id="top_footer"> 
-			<ul>
-				<li> <a href="#science_section"> Działy z fizyki </a> </li>
-			</ul>
-		</header>
+	<!-- Layout of main screen -->
+		<div id="container">			
+			<header id="top_footer"> 
+				<ul>
+					<li> <a href="#useful_links"> Przydatne linki  	  </a> </li>
+					<li> <a href="#container">	   Strona główna	  </a> </li>
+					<li> <a href="#science_section"> Działy z fizyki  </a> </li>
+					<li> <a href="#credits">  	      O nas 		  </a> </li>
+				</ul>
+			</header>
+			
+			<canvas id="canvas1">
+				<script src="script.js"> </script>
+			</canvas> 
+		</div>
+	<!-- Layout of main screen -->
+
+
+
+
+	<!-- Layout of subsite -->	
+		<div class="segment">	
+			<canvas id="canvas2">
+				<script src="tlo_drzewo1.js"> </script>
+			</canvas>	
+			
+			<article id="science_section" class="section">
+				<h1> Działy z fizyki </h1>
+				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae felis eget metus volutpat congue eget et risus. 
+				Pellentesque non lobortis erat. Morbi tincidunt nibh ante, at dictum purus imperdiet hendrerit. Sed aliquam, ante ut ullamcorper 
+				fermentum, ante odio scelerisque lorem, vel commodo purus odio pellentesque magna. Pellentesque eget dignissim dui, vitae convallis ex. 
+				Praesent mattis dapibus dignissim. Cras nec congue augue. Quisque nibh purus, feugiat nec enim id, sodales semper purus.
+				Nam dictum magna id purus fermentum, id scelerisque odio ullamcorper. Pellentesque pulvinar viverra lacus, a posuere eros. 
+				Cras auctor tortor vel tincidunt ultricies. Integer erat elit, aliquam at enim sed, rutrum vehicula ex. 
+				Mauris ornare non justo vel consectetur. Fusce eu felis ipsum. Vestibulum convallis pretium neque sed maximus.
+				
+				Aliquam sit amet diam sagittis, eleifend ligula eu, blandit neque. In lectus leo, porta sit amet dolor id, tristique euismod diam. 
+				Praesent metus mauris, posuere nec metus vitae, volutpat facilisis ligula. Quisque ac arcu scelerisque, fermentum lacus eu, tempor purus.
+				Integer posuere elit id arcu gravida, quis imperdiet nunc vestibulum. Ut luctus odio sapien, id rutrum tortor ultrices ac. 
+				Pellentesque porta hendrerit odio, vel rutrum velit feugiat vitae. Nullam urna nulla, congue tincidunt dolor et, tristique consectetur sem. 
+				Integer et quam a tellus lobortis venenatis. Nullam vitae libero at erat consequat suscipit. Nunc dapibus mauris et neque condimentum, 
+				tincidunt fringilla metus molestie. Donec a nulla enim. Ut ut purus aliquam, efficitur mauris ac, molestie dolor. </p>
+				
+				</br></br>
+				
+				<a href ="rzut_ukosny/index.html"> <img src="img/kinematyka.png" alt="Kinematyka">  </img> </a>
+			</article>
+			
+			
+		</div>
 		
-		<footer id="main_footer"> 
-			<ul>
-				<li> <a href="#useful_links"> Przydatne materiały </a> </li>
-				<li> <a href="#credits"> O nas </a> </li> 
-			</ul>
+		<div class="segment">
+				
+			<canvas id="canvas3">
+				<script src="tlo_drzewo2.js"> </script>
+			</canvas>		
+				
+			<article id="useful_links" class="section">
+				</br>
+				<h1> Przydatne materiały </h1>
+				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae felis eget metus volutpat congue eget et risus. 
+				Pellentesque non lobortis erat. Morbi tincidunt nibh ante, at dictum purus imperdiet hendrerit. Sed aliquam, ante ut ullamcorper 
+				fermentum, ante odio scelerisque lorem, vel commodo purus odio pellentesque magna. Pellentesque eget dignissim dui, vitae convallis ex. 
+				Praesent mattis dapibus dignissim. Cras nec congue augue. Quisque nibh purus, feugiat nec enim id, sodales semper purus.
+				Nam dictum magna id purus fermentum, id scelerisque odio ullamcorper. Pellentesque pulvinar viverra lacus, a posuere eros. 
+				Cras auctor tortor vel tincidunt ultricies. Integer erat elit, aliquam at enim sed, rutrum vehicula ex. 
+				Mauris ornare non justo vel consectetur. Fusce eu felis ipsum. Vestibulum convallis pretium neque sed maximus.
+				
+				Aliquam sit amet diam sagittis, eleifend ligula eu, blandit neque. In lectus leo, porta sit amet dolor id, tristique euismod diam. 
+				Praesent metus mauris, posuere nec metus vitae, volutpat facilisis ligula. Quisque ac arcu scelerisque, fermentum lacus eu, tempor purus.
+				Integer posuere elit id arcu gravida, quis imperdiet nunc vestibulum. Ut luctus odio sapien, id rutrum tortor ultrices ac. 
+				Pellentesque porta hendrerit odio, vel rutrum velit feugiat vitae. Nullam urna nulla, congue tincidunt dolor et, tristique consectetur sem. 
+				Integer et quam a tellus lobortis venenatis. Nullam vitae libero at erat consequat suscipit. Nunc dapibus mauris et neque condimentum, 
+				tincidunt fringilla metus molestie. Donec a nulla enim. Ut ut purus aliquam, efficitur mauris ac, molestie dolor. </p>
+			</article>
 			
-		</footer>
-			
-		<canvas id="canvas1"> 
-			<script src="script.js"> </script>
-		</canvas>	
+			<article id="credits" class="section">
+				</br>
+				<h1> O nas </h1>
+				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae felis eget metus volutpat congue eget et risus. 
+				Pellentesque non lobortis erat. Morbi tincidunt nibh ante, at dictum purus imperdiet hendrerit. Sed aliquam, ante ut ullamcorper 
+				fermentum, ante odio scelerisque lorem, vel commodo purus odio pellentesque magna. Pellentesque eget dignissim dui, vitae convallis ex. 
+				Praesent mattis dapibus dignissim. Cras nec congue augue. Quisque nibh purus, feugiat nec enim id, sodales semper purus.
+				Nam dictum magna id purus fermentum, id scelerisque odio ullamcorper. Pellentesque pulvinar viverra lacus, a posuere eros. 
+				Cras auctor tortor vel tincidunt ultricies. Integer erat elit, aliquam at enim sed, rutrum vehicula ex. 
+				Mauris ornare non justo vel consectetur. Fusce eu felis ipsum. Vestibulum convallis pretium neque sed maximus.
+				
+				Aliquam sit amet diam sagittis, eleifend ligula eu, blandit neque. In lectus leo, porta sit amet dolor id, tristique euismod diam. 
+				Praesent metus mauris, posuere nec metus vitae, volutpat facilisis ligula. Quisque ac arcu scelerisque, fermentum lacus eu, tempor purus.
+				Integer posuere elit id arcu gravida, quis imperdiet nunc vestibulum. Ut luctus odio sapien, id rutrum tortor ultrices ac. 
+				Pellentesque porta hendrerit odio, vel rutrum velit feugiat vitae. Nullam urna nulla, congue tincidunt dolor et, tristique consectetur sem. 
+				Integer et quam a tellus lobortis venenatis. Nullam vitae libero at erat consequat suscipit. Nunc dapibus mauris et neque condimentum, 
+				tincidunt fringilla metus molestie. Donec a nulla enim. Ut ut purus aliquam, efficitur mauris ac, molestie dolor. </p>
+			</article>
+		</div>
+	<!-- Layout of subsite -->
 		
-		<article id="science_section">
-			<h1> Działy z fizyki </h1>
-			<p class="text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae felis eget metus volutpat congue eget et risus. 
-			Pellentesque non lobortis erat. Morbi tincidunt nibh ante, at dictum purus imperdiet hendrerit. Sed aliquam, ante ut ullamcorper 
-			fermentum, ante odio scelerisque lorem, vel commodo purus odio pellentesque magna. Pellentesque eget dignissim dui, vitae convallis ex. 
-			Praesent mattis dapibus dignissim. Cras nec congue augue. Quisque nibh purus, feugiat nec enim id, sodales semper purus.
-			Nam dictum magna id purus fermentum, id scelerisque odio ullamcorper. Pellentesque pulvinar viverra lacus, a posuere eros. 
-			Cras auctor tortor vel tincidunt ultricies. Integer erat elit, aliquam at enim sed, rutrum vehicula ex. 
-			Mauris ornare non justo vel consectetur. Fusce eu felis ipsum. Vestibulum convallis pretium neque sed maximus.
-			
-			Aliquam sit amet diam sagittis, eleifend ligula eu, blandit neque. In lectus leo, porta sit amet dolor id, tristique euismod diam. 
-			Praesent metus mauris, posuere nec metus vitae, volutpat facilisis ligula. Quisque ac arcu scelerisque, fermentum lacus eu, tempor purus.
-			Integer posuere elit id arcu gravida, quis imperdiet nunc vestibulum. Ut luctus odio sapien, id rutrum tortor ultrices ac. 
-			Pellentesque porta hendrerit odio, vel rutrum velit feugiat vitae. Nullam urna nulla, congue tincidunt dolor et, tristique consectetur sem. 
-			Integer et quam a tellus lobortis venenatis. Nullam vitae libero at erat consequat suscipit. Nunc dapibus mauris et neque condimentum, 
-			tincidunt fringilla metus molestie. Donec a nulla enim. Ut ut purus aliquam, efficitur mauris ac, molestie dolor. </p>
-			
-			</br></br>
-			
-			<a href ="https://github.com/sumo-slonik/FizykaZawszeStyka/blob/master/rzut_ukosny/index.html"> <img src="img/kinematyka.png" alt="Kinematyka">  </img> </a>
-		</article>
 		
-		<article id="useful_links">
-			</br>
-			<h1> Przydatne materiały </h1>
-			<p class="text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae felis eget metus volutpat congue eget et risus. 
-			Pellentesque non lobortis erat. Morbi tincidunt nibh ante, at dictum purus imperdiet hendrerit. Sed aliquam, ante ut ullamcorper 
-			fermentum, ante odio scelerisque lorem, vel commodo purus odio pellentesque magna. Pellentesque eget dignissim dui, vitae convallis ex. 
-			Praesent mattis dapibus dignissim. Cras nec congue augue. Quisque nibh purus, feugiat nec enim id, sodales semper purus.
-			Nam dictum magna id purus fermentum, id scelerisque odio ullamcorper. Pellentesque pulvinar viverra lacus, a posuere eros. 
-			Cras auctor tortor vel tincidunt ultricies. Integer erat elit, aliquam at enim sed, rutrum vehicula ex. 
-			Mauris ornare non justo vel consectetur. Fusce eu felis ipsum. Vestibulum convallis pretium neque sed maximus.
-			
-			Aliquam sit amet diam sagittis, eleifend ligula eu, blandit neque. In lectus leo, porta sit amet dolor id, tristique euismod diam. 
-			Praesent metus mauris, posuere nec metus vitae, volutpat facilisis ligula. Quisque ac arcu scelerisque, fermentum lacus eu, tempor purus.
-			Integer posuere elit id arcu gravida, quis imperdiet nunc vestibulum. Ut luctus odio sapien, id rutrum tortor ultrices ac. 
-			Pellentesque porta hendrerit odio, vel rutrum velit feugiat vitae. Nullam urna nulla, congue tincidunt dolor et, tristique consectetur sem. 
-			Integer et quam a tellus lobortis venenatis. Nullam vitae libero at erat consequat suscipit. Nunc dapibus mauris et neque condimentum, 
-			tincidunt fringilla metus molestie. Donec a nulla enim. Ut ut purus aliquam, efficitur mauris ac, molestie dolor. </p>
-		</article>
 		
-		<article id="credits">
-			</br>
-			<h1> O nas </h1>
-			<p class="text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae felis eget metus volutpat congue eget et risus. 
-			Pellentesque non lobortis erat. Morbi tincidunt nibh ante, at dictum purus imperdiet hendrerit. Sed aliquam, ante ut ullamcorper 
-			fermentum, ante odio scelerisque lorem, vel commodo purus odio pellentesque magna. Pellentesque eget dignissim dui, vitae convallis ex. 
-			Praesent mattis dapibus dignissim. Cras nec congue augue. Quisque nibh purus, feugiat nec enim id, sodales semper purus.
-			Nam dictum magna id purus fermentum, id scelerisque odio ullamcorper. Pellentesque pulvinar viverra lacus, a posuere eros. 
-			Cras auctor tortor vel tincidunt ultricies. Integer erat elit, aliquam at enim sed, rutrum vehicula ex. 
-			Mauris ornare non justo vel consectetur. Fusce eu felis ipsum. Vestibulum convallis pretium neque sed maximus.
-			
-			Aliquam sit amet diam sagittis, eleifend ligula eu, blandit neque. In lectus leo, porta sit amet dolor id, tristique euismod diam. 
-			Praesent metus mauris, posuere nec metus vitae, volutpat facilisis ligula. Quisque ac arcu scelerisque, fermentum lacus eu, tempor purus.
-			Integer posuere elit id arcu gravida, quis imperdiet nunc vestibulum. Ut luctus odio sapien, id rutrum tortor ultrices ac. 
-			Pellentesque porta hendrerit odio, vel rutrum velit feugiat vitae. Nullam urna nulla, congue tincidunt dolor et, tristique consectetur sem. 
-			Integer et quam a tellus lobortis venenatis. Nullam vitae libero at erat consequat suscipit. Nunc dapibus mauris et neque condimentum, 
-			tincidunt fringilla metus molestie. Donec a nulla enim. Ut ut purus aliquam, efficitur mauris ac, molestie dolor. </p>
-		</article>
 		
+	<!-- When header is above the text, his background become a black; -->
+			<script src="jquery-3.5.1.js"> </script>
+			<script>				
+				$(document).ready(function() {
+					var stickyNav = function(){
+						var ScrollY = $(window).scrollTop();
+					   
+						if (ScrollY > window.innerHeight) { 
+							$('#top_footer').addClass('sticky');
+						} else {
+							$('#top_footer').removeClass('sticky'); 
+						}
+					};
+				  
+					stickyNav();
+				  
+					$(window).scroll(function() {
+						stickyNav();
+					});
+				});
+		
+			</script>
+	<!-- When header is above the text, his background become a black; -->
+			
+	<!-- Smooth scrolling -->
+		<script>
+					$('a[href*="#"]')
+			  // Remove links that don't actually link to anything
+			  .not('[href="#"]')
+			  .not('[href="#0"]')
+			  .click(function(event) {
+				// On-page links
+				if (
+				  location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+				  && 
+				  location.hostname == this.hostname
+				) {
+				  // Figure out element to scroll to
+				  var target = $(this.hash);
+				  target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+				  // Does a scroll target exist?
+				  if (target.length) {
+					// Only prevent default if animation is actually gonna happen
+					event.preventDefault();
+					$('html, body').animate({
+					  scrollTop: target.offset().top
+					}, 1000, function() {
+					  // Callback after animation
+					  // Must change focus!
+					  var $target = $(target);
+					  $target.focus();
+					  if ($target.is(":focus")) { // Checking if the target was focused
+						return false;
+					  } else {
+						
+						$target.focus(); // Set focus again
+					  };
+					});
+				  }
+				}
+			  });
+		</script>
+	<!-- Smooth scrolling -->
+	
+	
 	</body>
 </html>
 

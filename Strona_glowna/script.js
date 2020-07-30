@@ -1,17 +1,24 @@
 let scene, camera, renderer, cube, mesh1, mesh2, mesh3, mesh4, controls;
 let particlesArray;
 
+const container = document.getElementById( 'container' );
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext('2d');
+//canvas.width = document.body.clientWidth;
+//canvas.height = document.body.clientHeight;
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 function init() {
 	scene  = new THREE.Scene();
-	camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+	camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,1000);
 	renderer = new THREE.WebGLRenderer({ antialias: true , alpha: true});
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	document.body.appendChild(renderer.domElement);
+	
+	
+	document.body.appendChild( container );
+	container.appendChild(renderer.domElement);
 	
 	
 	const geometry = new THREE.SphereGeometry( 10, 20, 17 );
@@ -45,10 +52,6 @@ function init() {
 	mesh4.rotation.y = (Math.random() * 100) - 2;
 	
 	camera.position.z = 70;
-	
-	var ambientLight = new THREE.AmbientLight ( 0x123456,1.0)
-	scene.add(ambientLight)
-	
 }
 
 
@@ -128,7 +131,7 @@ function connect() {
 function animate() {
 	requestAnimationFrame(animate);
 	
-	ctx.clearRect(0,0,innerWidth,innerHeight);
+	ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
 	
 	for (let i = 0; i< particlesArray.length; i++) {
 		particlesArray[i].update();
@@ -160,12 +163,12 @@ function onWindowResize(){
 	camera.updateProjectionMatrix();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	
-	canvas.width = innerWidth;
-	canvas.height = innerHeight;
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 	init2();
 }
-
-	
+		
 init();
 init2();
 animate();
+

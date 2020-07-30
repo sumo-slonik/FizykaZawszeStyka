@@ -1,116 +1,95 @@
-body { 
-	margin: 0; 
-	padding: 20; 
+body {  
+	margin: 0;
+	padding: 0;	
 	box-sizing: border-box;
-	background-color: #000000; 
-	z-index: -2;
+	background-color: #000000;
 }
 
-#canvas1 {
-	position: absolute;
-	top: 0; left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1;
+#container { 					/* Main page style */
+    height: 100vh;
 }
 
-#top_footer {
-	padding-left: 0px;
-	position: absolute;
-	top: 0; left: 0;
-	text-align: center;
-	width: 100%;
-	z-index: 0;
-	padding: 0.5%;
+	#canvas1 {
+		position: absolute;
+		overflow: hidden;
+	}
+
+	#top_footer {
+		position: fixed;
+		left: 0;
+		top: 0;
+		text-align: center;
+		width: 100vw;
+		z-index: 5;
+	}
+
+	header ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: space-between;
+		
+	}
+
+		header li {
+			font-size: 5vh;
+			width: 100%;
+		}
+
+		header a {
+			padding: 20px;
+			display: block;
+			text-decoration: none;
+			background: -webkit-linear-gradient(#eee, #333);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	
+	#top_footer :hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	}	
+
+
+.segment {								/* style of subsite */
+	position: relative;
+	height: 1100px;
 }
 
-header ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
+	.section {
+		padding: 70px 100px 0 100px;
+		text-align: justify;
+		text-justify: inter-word;
+	}
 
-header li {
-	width: 100%;
-	font-size: 5vh;
-	padding-bottom: 20px;
-	padding-top: 15px;
-}
-
-#top_footer :hover {
-	background-color: rgba(255, 255, 255, 0.1);
-}
-
-#main_footer{
-	position: absolute;
-	bottom: 0;
-	text-align: center;
-	width: 100%;
-	z-index: 1;
-	padding: 0.5%;
-}
+	#canvas2 {
+		position: absolute;
+		z-index: -1;
+	}
+	
+	#canvas3 {
+		position: absolute;
+		z-index: -1;
+	}
 
 
-footer ul {
-	display: flex;
-	justify-content: space-beetwen;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
 
-footer li {
-	float: left;
-	width: 50%;
-	font-size: 5vh;
-	padding-bottom: 20px;
-	padding-top: 15px;
-}
-
-footer li:hover {
-	background-color: rgba(255, 255, 255, 0.1);
-}
-
-.materials {
-	background: -webkit-linear-gradient(#eee, #333);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-	font-size: 5vh;
-}
-
-.text {
-	font-size: 24px;
-	color: rgba(232, 232, 233, 0.9)
-}
-
-h1 {
-	font-size: 30px;
+h1 {								/* style of subsite headers */
+	font-size: 30px;	
 	color: rgba(255, 0, 0, 0.8);
 	text-align: center;
 }
 
-a {
-	text-decoration: none;
-	background: -webkit-linear-gradient(#eee, #333);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+p {									/* style of subsite text */
+	font-size: 24px;
+	color: rgba(232, 232, 233, 1);
 }
 
-#science_section {
-	padding: 30px 100px 0 100px;
+
+.sticky {							/* style of backgrand when header going	into a text */
 	background-color: black;
+    z-index: 100;
 }
-
-#useful_links {
-	padding: 30px 100px 0 100px;
-	background-color: black;
-}
-
-#credits {
-	padding: 30px 100px 0 100px;
-	background-color: black;
-}
-
 
 
 
