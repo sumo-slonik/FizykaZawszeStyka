@@ -6,36 +6,43 @@ html{
 body{
 	margin: 0px;
 	height: 100%;
-	font-family: 'Caveat', cursive;
 	background-color: #000000;
 	color: rgba(232, 232, 233, 0.9);
 	text-align: center;
 }
 #container{
-	-webkit-box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
-	-moz-box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
-	box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 86px -22px rgba(91,95,110,1);
 	margin: auto;
 	display: inline-block;
-	width: 1140px;
+	width: 1300px;
 	background-color: #5b5f6e;
 	border-radius: 15px;
 	border-style: groove;
+	position: relative;
+}
+
+#container_data{
+	display: inline-block;
 }
 
 .info_anim{
 	float: left;
+	box-shadow: 0px 0px 16px 12px rgba(69,74,92,1);
 	background-color:#454a5c;
 	border-radius: 15px;
-	font-size: 28px;
-	width: 240px;
+	font-size: 26px;
+	width: 270px;
 	margin: 20px;
 }
+
 .con_for_input{
 	float: left;
+	background-color:#454a5c;
+	box-shadow: 0px 0px 25px 20px rgba(69,74,92,1);
 	margin-left: 40px;
 	margin-right: 40px;
 	text-align: center;
+	border-radius: 15px;
 }
 .begin{
 	float: left;
@@ -48,18 +55,22 @@ body{
 	border-bottom-right-radius: 15px;
 }
 #menu{
+	margin-top: 18px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 1060px;
+	margin-bottom: 0px;
+	display: inline-block;
 }
 .info1{
 	background-color:#454a5c;
+	font-size: 14px;
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
+	text-align: center;
 }
 #start{
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 7px;
+	margin-bottom: 4px;
 	width: 250px;
 	height: 20px;
 	margin-left: auto;
@@ -77,6 +88,10 @@ body{
 	border-radius: 15px;
 	background-color: #454a5c;
 }
+
+#main{
+	margin: 0px;
+}
 button{
 	background-color: #59b5d4;
 	border-radius: 15px;
@@ -85,10 +100,11 @@ button:hover{
 	background-color: #b3d0ff;
 }
 .value{
+	box-shadow: inset 0px 0px 9px 7px rgba(69,74,92,1);
 	background-color: white;
-	color: #5b5f6e;
-	border-bottom-right-radius: 15px;
-	border-top-right-radius: 15px;
+	color: #3b3f4e;
+	/*border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;*/
 	width: 140px;
 }
 #time{
@@ -100,9 +116,8 @@ button:hover{
 	margin: 0px;
 }
 .input_text{
+	box-shadow: inset 0px 0px 5px 3px rgba(69,74,92,1);
 	margin: 0px;
-}
-
-#text{
-	font-size: 1px;
+	border-radius: 15px;
+	text-align: center;
 }

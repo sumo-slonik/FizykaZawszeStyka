@@ -2,67 +2,69 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 	<script src="p5.min.js" ></script>
 	<script src="jquery-3.5.1.min.js"></script>
 	<script src="sketch.js"></script>
 </head>
 <body>
-	<div id = "container">
-		<div id = "welcome">Symulator rzutu ukośnego piłką</div>
-		<div id="container_data">
-			<div class="info_anim" > &nbspwysokość:
-				<div id="wysokosc" class="value" style="float: right;"> &nbsp0.00 m</div>
-				<div style="clear:both;"></div>
+	<div style="display: inline-block;">
+		<div id = "container">
+			<div id = "welcome">Symulator rzutu ukośnego piłką</div>
+			<div id="container_data">
+				<div class="info_anim" > &nbspwysokość:
+					<div id="wysokosc" class="value" style="float: right;"> &nbsp0.00 m</div>
+					<div style="clear:both;"></div>
+				</div>
+				<div class = "info_anim" class="value"> &nbspprędkość:
+					<div id="predkosc" class="value" style="float: right;">&nbsp0.00 m/s</div>
+					<div style="clear:both;"></div>
+				</div>
+				<div class = "info_anim" class="value" id="time"> &nbspczas:
+					<div id="czas" class="value" style="float: right;">&nbsp0.00 s</div>
+					<div style="clear:both;"></div>
+				</div>
+				<div class = "info_anim" class="value" id="distance"> &nbspodległość:
+					<div id="odleglosc" class="value" style="float: right;">&nbsp0.00 m</div>
+					<div style="clear:both;"></div>
+				</div>
+				<div style="clear:both"></div>
 			</div>
-			<div class = "info_anim" class="value"> &nbspprędkość:
-				<div id="predkosc" class="value" style="float: right;">&nbsp0.00 m/s</div>
-				<div style="clear:both;"></div>
+			<div id = "main"></div>
+			<div id = "menu">
+				<!-- potwierdzenie wejścia - confirmation for input -->
+				<div class = "con_for_input">
+					<div class = "info1"> prędkość początkowa [m/s]</div>
+					<input id="velocity" type="text" class = "input_text"></input>
+					<button class = "input" id="vel_button"> OK </button>
+					<div class="info" id="info_velocity"> liczba z przedziału (0,1113)</div>
+				</div>
+				<div class = "con_for_input">
+					<div class="info1"> kąt rzutu [°] </div>
+					<input id="angle" type="text" class = "input_text"></input>
+					<button class = "input" id="angle_button"> OK </button>
+					<div class="info" id="info_angle">liczba z przedziału (-90, 90)</div>
+				</div>
+				<div class = "con_for_input">
+					<div class="info1">początkowa wysokość [m]</div>
+					<input id="height" type="text" class = "input_text"></input>
+					<button class = "input" id="h"> OK </button>
+					<div class="info" id="info_height">liczba z przedziału (0,500)</div>
+				</div>
+				<div class = "con_for_input">
+					<div id="opor_info"> opór ośrodka<br>&nbsp(na przykład powietrza)&nbsp</div>
+					<input type="checkbox" id="check_air"></input>
+				</div>
+				<div style="clear:both"></div>
 			</div>
-			<div class = "info_anim" class="value" id="time"> &nbspczas:
-				<div id="czas" class="value" style="float: right;">&nbsp0.00 s</div>
-				<div style="clear:both;"></div>
+			<div id="start">
+				<button id="start_button" class="begin">start</button>
+				<button id="pause_button" class="begin">pauza</button>
+				<button id="reset_button" class="begin">reset</button>
+				<div style="clear:both"></div>
 			</div>
-			<div class = "info_anim" class="value" id="distance"> &nbspodległość:
-				<div id="odleglosc" class="value" style="float: right;">&nbsp0.00 m</div>
-				<div style="clear:both;"></div>
-			</div>
-			<div style="clear:both"></div>
-		</div>
-		<div id = "main"></div>
-		<div id = "menu">
-			<!-- potwierdzenie wejścia - confirmation for input -->
-			<div class = "con_for_input">
-				<div class = "info1"> prędkość początkowa [m/s]</div>
-				<input id="velocity" type="text" class = "input_text"></input>
-				<button class = "input" id="vel_button"> OK </button>
-				<div class="info" id="info_velocity"> liczba z przedziału (0,1113)</div>
-			</div>
-			<div class = "con_for_input">
-				<div class="info1"> kąt rzutu [°] </div>
-				<input id="angle" type="text" class = "input"></input>
-				<button class = "input" id="angle_button"> OK </button>
-				<div class="info" id="info_angle">liczba z przedziału (-90, 90)</div>
-			</div>
-			<div class = "con_for_input">
-				<div class="info1">początkowa wysokość [m]</div>
-				<input id="height" type="text" class = "input"></input>
-				<button class = "input" id="h"> OK </button>
-				<div class="info" id="info_height">liczba z przedziału (0,500)</div>
-			</div>
-			<div class = "con_for_input">
-				<div id="opor_info"> opór ośrodka<br>&nbsp(na przykład powietrza)&nbsp</div>
-				<input type="checkbox" id="check_air"></input>
-			</div>
-			<div style="clear:both"></div>
-		</div>
-		<div id="start">
-			<button id="start_button" class="begin">start</button>
-			<button id="pause_button" class="begin">pauza</button>
-			<button id="reset_button" class="begin">reset</button>
-			<div style="clear:both"></div>
 		</div>
 	</div>
+
 
 
 </body>

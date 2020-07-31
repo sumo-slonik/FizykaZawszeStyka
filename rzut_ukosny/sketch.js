@@ -24,7 +24,7 @@ let confirmed_angle = false; // flaga, true jeżeli poprawny kąt został podany
 let confirmed_v = false; // flaga, true jeżeli poprawna prędkość początkowa została podana przez użytkownika
 
 function setup(){
-  myCanvas = createCanvas(1113, 537);
+  myCanvas = createCanvas(1113, 524);
   myCanvas.parent('main');
   img = loadImage('img/wykres.png');
   frameRate(100);
@@ -128,15 +128,15 @@ function draw(){
       //jeżeli użytkownik kliknął myszką w którymś miejscu układu współrzędnych, a nie były jeszcze ustalone
       //wartośći Vx i Vy to beginVx i beginVy zostaną zaaktualizowane.
       //Innymi słowy, flaga setData aktywna
-      draw_x = beginVx + 73;
-      draw_y = beginVy + e.y;
+      draw_x = beginVx + 75;
+      draw_y = beginVy + e.y + 7;
     }
     else{
       //flaga setData jest nieaktywna, czyli użytkownik wybiera jeszcze myszką Vx i Vy
       draw_x = mouseX;
       draw_y = mouseY;
-      $('#angle')[0].value = Math.round(angle(mouseX - 73, mouseY - e.y)*180/Math.PI * 100) / 100; //obliczanie kąta z dokładnością do 2 miejsc po przecinku
-      $('#velocity')[0].value = Math.round(velocity(mouseX-73, mouseY-e.y) * 100) / 100; // analogicznie prędkość początkowa
+      $('#angle')[0].value = Math.round(angle(mouseX - 75, mouseY - e.y - 7)*180/Math.PI * 100) / 100; //obliczanie kąta z dokładnością do 2 miejsc po przecinku
+      $('#velocity')[0].value = Math.round(velocity(mouseX-75, mouseY-e.y-7) * 100) / 100; // analogicznie prędkość początkowa
       $('#height')[0].value = Math.round((493-e.y) * 100) / 100; // oraz wysokość
     }
     line(73,e.y,draw_x,draw_y);
@@ -163,8 +163,8 @@ function draw(){
     textSize(17);
     fill(0);
     //wypisuje obok kropek aktualne wartości Vx i Vy
-    text((parseInt(-draw_y + e.y,10)).toString()+'m/s', draw_x,(e.y+draw_y)/2);
-    text((parseInt(draw_x - 73)).toString()+'m/s', draw_x/2,draw_y);
+    text((parseInt(Math.round(-draw_y + e.y + 7),10)).toString()+'m/s', draw_x,(e.y+draw_y)/2);
+    text((parseInt(Math.round(draw_x - 75))).toString()+'m/s', draw_x/2,draw_y);
     fill(91,95,102);
     strokeWeight(1);
     ellipse(e.x,e.y,15,15);
@@ -188,8 +188,10 @@ function mouseClicked(){
   if(!startedAnimation && !setData && mouseX >= 73 && mouseX <= sizeX + 73 && mouseY >= 0 && mouseY <= sizeY){
     //jeżeli myszka zostanie kliknięta na układ współrzędnych i flaga setData jest nieaktywna,
     //to ustalamy parametry animacji na podstawie położenia myszki i setData = true
-    beginVx = mouseX - 73;
-    beginVy = mouseY - e.y;
+    beginVx = mouseX - 75;
+    beginVy = mouseY - e.y - 7;
+    console.log(beginVx);
+    console.log(beginVy);
     setData = true;
   }
   else if(!startedAnimation && setData && mouseX >= 73 && mouseX <= sizeX + 73 && mouseY >= 0 && mouseY <= sizeY){
@@ -290,7 +292,7 @@ function confirm_angle(){
   angle = angle.replace(",",".");
   let reg = /-*\d+(\.\d+)?/;
   if(reg.test(angle) && angle > -90 && angle < 90){ // sprawdza czy kąt jest liczbą z przedziału -90 do 90
-    $('#info_angle')[0].style.color = 'black';
+    $('#info_velocity').css("color","rgba(232, 232, 233,0.9)");
   }
   else{
     $('#info_angle')[0].style.color = 'red'; // podświetla uwagę na czerwono i nie pozwala przejść dalej
@@ -311,7 +313,7 @@ function confirm_velocity(){
   v = v.replace(",",".");
   let reg = /\d+(\.\d+)?/;
   if(reg.test(v) && v > 0 && v < 1113){
-    $('#info_velocity')[0].style.color = 'black';
+    $('#info_velocity').css("color","rgba(232, 232, 233,0.9)");
   }
   else{
     $('#info_velocity')[0].style.color = 'red';
@@ -331,7 +333,7 @@ function confirm_height(){
   height = height.replace(",",".");
   let reg = /\d+(\.\d+)?/;
   if(reg.test(height) && height >= 0 && height <= 500){
-    $('#info_height')[0].style.color = 'black';
+    $('#info_velocity').css("color","rgba(232, 232, 233,0.9)");
   }
   else{
     $('#info_height')[0].style.color = 'red';
