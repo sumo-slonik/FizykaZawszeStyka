@@ -121,3 +121,14 @@ button:hover{
 	border-radius: 15px;
 	text-align: center;
 }
+.ranger:disabled{
+	opacity: 0.5;
+}
+.ranger{
+	margin: 0;
+	height:2px;
+}
+
+.info_air{
+	margin:0;
+}
