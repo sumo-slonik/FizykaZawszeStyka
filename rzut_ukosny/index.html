@@ -51,8 +51,25 @@
 					<div class="info" id="info_height">liczba z przedziału (0,500)</div>
 				</div>
 				<div class = "con_for_input">
-					<div id="opor_info"> opór ośrodka<br>&nbsp(na przykład powietrza)&nbsp</div>
-					<input type="checkbox" id="check_air"></input>
+					<div style="display: inline-block">
+						<div id="opor_info" style="float: left; margin-right: 5px"> opór ośrodka</div>
+						<input type="checkbox" id="check_air" style="float: left; margin-left:5px;"></input>
+						<div style="clear: both;"></div>
+					</div>
+					<div id="check_air_container">
+						<div style="margin-bottom: 5px;">
+							<input type="range" id="mass_range_air" class="ranger" value="50"></input>
+							<label name="mass_range_air" style="float: left; margin-right: 22px;">masa</label>
+							<div style="clear: both;"></div>
+							<div class="info_air" id="mass_amount">10 kg</div>
+						</div>
+						<div style="margin-top: 5px;">
+							<input type="range" id="preasure_range_air" class="ranger" value="50"></input>
+							<label name="presure_range_air" style="float: left;">ciśnienie</label>
+							<div style="clear: both;"></div>
+							<div class="info_air" id="preasure_amount">1013 hpa</div>
+						</div>
+					</div>
 				</div>
 				<div style="clear:both"></div>
 			</div>

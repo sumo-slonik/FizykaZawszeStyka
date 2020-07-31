@@ -8,7 +8,7 @@ y piłki obliczona będzie jako 493 - e.y zamiast samego e.y*/
 //wyznaczony eksperymentalnie
 let dt = 0.01*8343/5000;
 let t = 0; //całkowity czas
-let e = new element(493,76); //obiekt który odpowiada piłce
+let e = new element(493,76,5); //obiekt który odpowiada piłce
 let sizeX = 1000; // szerokość układu współrzędnych w pikselach
 let sizeY = 500; // wysokość układu współrzędnych w pikselach
 let startedAnimation = false; //flagi
@@ -33,6 +33,8 @@ function setup(){
   e.addForce(0, 9.81);
 }
 function draw(){
+  let opor = 0.5*Math.pow(1.07,$("#preasure_range_air")[0].value-50);
+  e.m = 4*Math.pow(1.07, $("#mass_range_air")[0].value-50);
   if(startedAnimation){
     $('#h')[0].disabled = true; // gdy działa animacja, niektóre przyciski stają się nieaktywne
     $('#angle_button')[0].disabled = true;
@@ -57,6 +59,16 @@ function draw(){
     $('#pause_button')[0].disabled = true;
     $('#reset_button')[0].disabled = true;
   }
+  if(!$("#check_air")[0].checked || $("#check_air")[0].disabled){
+    $(".ranger").attr("disabled",true);
+  }
+  else{
+    $(".ranger").attr("disabled",false);
+    $("#preasure_amount")[0].innerHTML = Math.round(opor*2026 * 100) / 100+" hpa";
+    $("#mass_amount")[0].innerHTML = Math.round(e.m*2.5 * 100) / 100+" kg";
+    console.log(opor);
+    console.log(e.m);
+  }
   fill(255);
   stroke('orange');
   background(img);
@@ -75,7 +87,7 @@ function draw(){
       endShape();
       if(frameUpdate % 7 == 0){ // wyliczenia parametrów animacji i ich wypisanie na ekran (domyślnie co 7 klatek)
         $('#predkosc')[0].innerHTML = Math.round((velocity(e.Vx, e.Vy))* 100) / 100+"&nbspm/s";
-        $('#wysokosc')[0].innerHTML = Math.round(((493-e.y) < 0.2 ? 0 : 493-e.y) * 100) / 100+"&nbspm";
+        $('#wysokosc')[0].innerHTML = Math.round(((492-e.y) < 0.2 ? 0 : 492-e.y) * 100) / 100+"&nbspm";
         $('#czas')[0].innerHTML = Math.round(t * 100) / 100+"&nbsps";
         $('#odleglosc')[0].innerHTML = Math.round((e.x - 73) * 100) / 100+"&nbspm";
       }
@@ -88,16 +100,15 @@ function draw(){
     noFill();
     endShape();
     frameUpdate += 1;
-    // domyślnie współczynnik oporu został przyjęty na 0.12
     if($('#check_air')[0].checked == true){ // jeżeli zaznaczony został opór ośrodka
-      e.y += e.Vy*dt + 0.5*0.12*e.Vy*dt*dt -0.5*9.81*dt*dt; // wzór na y(t) 
-      e.x += e.Vx*dt -0.5*0.12*e.Vx*dt*dt; // wzór na x(t)
-      e.Vx += (e.Ax - 0.12*e.Vx)*dt; // wzór na Vx(t)
+      e.y += e.Vy*dt + 0.5*opor/e.m*e.Vy*dt*dt -0.5*9.81*dt*dt; // wzór na y(t)
+      e.x += e.Vx*dt -0.5*opor/e.m*e.Vx*dt*dt; // wzór na x(t)
+      e.Vx += (e.Ax - opor/e.m*e.Vx)*dt; // wzór na Vx(t)
       if(Math.abs(e.Vy) < 0.2 && e.y >= sizeY - 8){
         e.Vy = 0;
         e.y = sizeY -7;
       }
-      else e.Vy += (e.Ay - 0.12*e.Vy)*dt; // wzór na Vy(t)
+      else e.Vy += (e.Ay - opor/e.m*e.Vy)*dt; // wzór na Vy(t)
       if(e.y >= sizeY-7 && e.Vy >= 0 && e.Vy != 0){ // jeżeli piłka dotknie ziemi, to odbije się od niej zachowując 60% prędkośći
         e.Vy = -Math.abs(e.Vy*0.6);
       }
@@ -135,8 +146,10 @@ function draw(){
       //flaga setData jest nieaktywna, czyli użytkownik wybiera jeszcze myszką Vx i Vy
       draw_x = mouseX;
       draw_y = mouseY;
-      $('#angle')[0].value = Math.round(angle(mouseX - 75, mouseY - e.y - 7)*180/Math.PI * 100) / 100; //obliczanie kąta z dokładnością do 2 miejsc po przecinku
-      $('#velocity')[0].value = Math.round(velocity(mouseX-75, mouseY-e.y-7) * 100) / 100; // analogicznie prędkość początkowa
+      console.log(mouseX - 75);
+      console.log(mouseY - e.y - 7.5);
+      $('#angle')[0].value = Math.round(angle(beginVx, beginVy)*180/Math.PI * 100) / 100; //obliczanie kąta z dokładnością do 2 miejsc po przecinku
+      $('#velocity')[0].value = Math.round(velocity(beginVx, beginVy) * 100) / 100; // analogicznie prędkość początkowa
       $('#height')[0].value = Math.round((493-e.y) * 100) / 100; // oraz wysokość
     }
     line(73,e.y,draw_x,draw_y);
@@ -165,6 +178,8 @@ function draw(){
     //wypisuje obok kropek aktualne wartości Vx i Vy
     text((parseInt(Math.round(-draw_y + e.y + 7),10)).toString()+'m/s', draw_x,(e.y+draw_y)/2);
     text((parseInt(Math.round(draw_x - 75))).toString()+'m/s', draw_x/2,draw_y);
+    beginVy = -Math.round(-draw_y + e.y + 7);
+    beginVx = Math.round(draw_x - 75);
     fill(91,95,102);
     strokeWeight(1);
     ellipse(e.x,e.y,15,15);
@@ -188,8 +203,6 @@ function mouseClicked(){
   if(!startedAnimation && !setData && mouseX >= 73 && mouseX <= sizeX + 73 && mouseY >= 0 && mouseY <= sizeY){
     //jeżeli myszka zostanie kliknięta na układ współrzędnych i flaga setData jest nieaktywna,
     //to ustalamy parametry animacji na podstawie położenia myszki i setData = true
-    beginVx = mouseX - 75;
-    beginVy = mouseY - e.y - 7;
     console.log(beginVx);
     console.log(beginVy);
     setData = true;
@@ -201,12 +214,12 @@ function mouseClicked(){
 }
 
 //głowny obiekt przechowujący dane piłki
-function element(y,x){
+function element(y,x,m){
   this.Ax = 0; // przyspieszenie w kierunku X
   this.Ay = 0 // przyspieszenie w kierunku Y
   this.Vx = 0; // prędkość w kierunku X
   this.Vy = 0; // prędkość w kierunku Y
-  this.m = 0; // masa (aktualnie nie używana)
+  this.m = m; // masa
   this.y = y; // położenie y
   this.x = x; // położenie x
 }
