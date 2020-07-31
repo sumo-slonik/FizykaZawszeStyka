@@ -14,6 +14,7 @@ let startedAnimation = false;
 let gravity = 9.81;
 let frictionParametr = 0;
 let accepted_f = false;
+let showForce = true;
 
 function degrees_to_radians(degrees) {
     var pi = Math.PI;
@@ -52,7 +53,7 @@ function draw() {
         if (startedAnimation) {
             kostka.checkEdges(rownia);
             slide(kostka,gravity,angle);
-            friction(kostka,rownia,gravity,angle);
+            //friction(kostka,rownia,gravity,angle);
             kostka.update();
             if (getDown && kostka.rotationAngle > 0) {
 
@@ -60,11 +61,20 @@ function draw() {
             } else if (getDown) {
                 kostka.rotationAngle = 0;
                 startedAnimation=false;
+                showForce=false;
             }
         }
         kostka.display();
+        kostka.cetrePoint();
+        if (showForce)
+        {
+            kostka.gravityForcePrint();
+            kostka.sliceForcePrint();
+            kostka.pressForcePrint();
         }
     }
+    $('#predkosc')[0].innerHTML= kostka.velocity.mag() +"&nbspm/s";
+}
 
 function start() {
     if (getDown)
@@ -173,6 +183,48 @@ Brick.prototype.display = function () {
     square(0, -this.wymiar, this.wymiar);
     pop();
 }
+Brick.prototype.cetrePoint = function () {
+    push();
+    strokeWeight(10);
+    translate(this.position.x, this.position.y + this.wymiar);
+    rotate(this.rotationAngle);
+    point(0+this.wymiar/2, -this.wymiar/2,);
+    pop();
+}
+Brick.prototype.gravityForcePrint = function () {
+    push();
+    let start = createVector(+this.wymiar/2, -this.wymiar/2);
+    let end = createVector(0,this.mass*gravity);
+    strokeWeight(10);
+    translate(this.position.x, this.position.y + this.wymiar);
+    rotate(this.rotationAngle);
+    end.rotate(-this.rotationAngle);
+    end.mult(10);
+    drawArrow(start,end,'black');
+    pop();
+}
+Brick.prototype.sliceForcePrint = function () {
+    push();
+    let start = createVector(+this.wymiar/2, -this.wymiar/2);
+    let end = createVector(this.mass*gravity*Math.sin(this.rotationAngle),0);
+    strokeWeight(10);
+    translate(this.position.x, this.position.y + this.wymiar);
+    rotate(this.rotationAngle);
+    end.mult(10);
+    drawArrow(start,end,'red');
+    pop();
+}
+Brick.prototype.pressForcePrint = function () {
+    push();
+    let start = createVector(+this.wymiar/2, -this.wymiar/2);
+    let end = createVector(0,this.mass*gravity*Math.cos(this.rotationAngle));
+    strokeWeight(10);
+    translate(this.position.x, this.position.y + this.wymiar);
+    rotate(this.rotationAngle);
+    end.mult(10);
+    drawArrow(start,end,'red');
+    pop();
+}
 Brick.prototype.addForce = function (force) {
     let f = force.copy();
     f.div(this.mass);
@@ -182,7 +234,7 @@ Brick.prototype.update = function () {
     let acceleration_c = this.acceleration.copy();
     let velocity_c = this.velocity.copy();
     this.velocity.add(acceleration_c);
-    this.velocity.div(10);
+    this.velocity.div(5);
     if (this.velocity.x <= 0)
     {
         this.velocity.mult(0);
@@ -261,12 +313,25 @@ function friction(kostka,rownia,gravity,angle)
     force.mult(-1);
     kostka.addForce(force);
 }
+function drawArrow(base, vec, myColor) {
+    push();
+    stroke(myColor);
+    strokeWeight(3);
+    fill(myColor);
+    translate(base.x, base.y);
+    line(0, 0, vec.x, vec.y);
+    rotate(vec.heading());
+    let arrowSize = 7;
+    translate(vec.mag() - arrowSize, 0);
+    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
+}
 $(function () {
     $('#heightButton').click(confirm_h);
     $('#angleButton').click(confirm_a);
     $('#massButton').click(confirm_m);
-    $('#Start').click(start);
-    $('#Pause').click(pause);
-    $('#Reset').click(reset);
+    $('#startButton').click(start);
+    $('#pauseButton').click(pause);
+    $('#resetButton').click(reset);
     $('#frictionButton').click(confirm_f);
 });
