@@ -265,8 +265,8 @@ $(function () {
     $('#heightButton').click(confirm_h);
     $('#angleButton').click(confirm_a);
     $('#massButton').click(confirm_m);
-    $('#Start').click(start);
-    $('#Pause').click(pause);
-    $('#Reset').click(reset);
+    $('#startButton').click(start);
+    $('#pauseButton').click(pause);
+    $('#resetButton').click(reset);
     $('#frictionButton').click(confirm_f);
 });

@@ -54,7 +54,7 @@
       <recent name="D:\Fizyka\FizykaZawszeStyka\rownia" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FizykaZawszeStyka/rzut_ukosny/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -69,10 +69,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
-        <item itemvalue="Node.js.sketch.js" />
+        <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="Node.js.sketch.js" />
       </list>
     </recent_temporary>
   </component>
@@ -90,7 +90,12 @@
       <workItem from="1596006812090" duration="13899000" />
       <workItem from="1596054513170" duration="7459000" />
       <workItem from="1596093899693" duration="9799000" />
-      <workItem from="1596115556301" duration="3027000" />
+      <workItem from="1596115556301" duration="3570000" />
+      <workItem from="1596135730125" duration="3903000" />
+      <workItem from="1596192114484" duration="2493000" />
+      <workItem from="1596215181039" duration="1661000" />
+      <workItem from="1596217737832" duration="3739000" />
+      <workItem from="1596222311587" duration="4711000" />
     </task>
     <task id="LOCAL-00001" summary="poprawka kątu obrotu klocka">
       <created>1596032038660</created>
