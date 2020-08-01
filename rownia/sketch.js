@@ -35,6 +35,7 @@ function setup() {
 
 function draw() {
     buttonCheck();
+    $('#angle')[0].value = Math.round($('#rangeAngle')[0].value/1.12);
     background(img);
     rownia.second = createVector(55, 550 - height);
     rownia.third = createVector(55 + 1 / Math.tan(angle) * height, 550);
@@ -109,7 +110,14 @@ function confirm_h() {
     }
     height *= 97;
 }
-
+function heightRanger()
+{
+    accepted_h = true;
+    first_time = true;
+    $('#height')[0].value = $('#rangeHeight')[0].value/20;
+    height = document.getElementById('height').value;
+    height *= 97;
+}
 function confirm_a() {
     first_time = true;
     angle = document.getElementById("angle").value;
@@ -126,7 +134,14 @@ function confirm_a() {
     }
     angle = degrees_to_radians(angle);
 }
-
+function angleRanger()
+{
+    accepted_a = true;
+    first_time = true;
+    $('#angle')[0].value = Math.floor($('#rangeAngle')[0].value/1.12);
+    angle = document.getElementById('angle').value;
+    angle = degrees_to_radians(angle);
+}
 function confirm_m() {
     first_time = true;
     mass = document.getElementById("mass").value;
@@ -334,4 +349,6 @@ $(function () {
     $('#pauseButton').click(pause);
     $('#resetButton').click(reset);
     $('#frictionButton').click(confirm_f);
+    $("#rangeHeight").click(heightRanger);
+    $("#rangeAngle").click(angleRanger);
 });
