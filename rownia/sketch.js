@@ -1,4 +1,3 @@
-let confirmedHeight = false;
 let height = 0;
 let angle = Math.PI / 2;
 let kostka;
@@ -53,11 +52,11 @@ function draw() {
         }
         if (startedAnimation) {
             kostka.checkEdges(rownia);
-            slide(kostka,gravity,angle);
-            //friction(kostka,rownia,gravity,angle);
+            kostka.slide();
+            kostka.friction(rownia.friction);
+            $('#debug')[0].innerHTML= kostka.acceleration.y;
             kostka.update();
             if (getDown && kostka.rotationAngle > 0) {
-
                 kostka.rotationAngle -= 0.5;
             } else if (getDown) {
                 kostka.rotationAngle = 0;
@@ -67,12 +66,6 @@ function draw() {
         }
         kostka.display();
         kostka.cetrePoint();
-        if (showForce)
-        {
-            kostka.gravityForcePrint();
-            kostka.sliceForcePrint();
-            kostka.pressForcePrint();
-        }
     }
     $('#predkosc')[0].innerHTML= kostka.velocity.mag() +"&nbspm/s";
 }
@@ -197,6 +190,7 @@ Brick.prototype.display = function () {
     rotate(this.rotationAngle);
     square(0, -this.wymiar, this.wymiar);
     pop();
+    this.forcePrint();
 }
 Brick.prototype.cetrePoint = function () {
     push();
@@ -239,6 +233,37 @@ Brick.prototype.pressForcePrint = function () {
     end.mult(10);
     drawArrow(start,end,'red');
     pop();
+}
+Brick.prototype.frictionForcePrint=function(frictionVal)
+{
+    push();
+    let start = createVector(0, 0);
+    let end = createVector(-this.mass*gravity*Math.cos(this.rotationAngle)*frictionVal,0);
+    strokeWeight(10);
+    translate(this.position.x, this.position.y + this.wymiar);
+    rotate(this.rotationAngle);
+    end.mult(10);
+    drawArrow(start,end,'red');
+    pop();
+}
+Brick.prototype.forcePrint = function()
+{
+    if(($('#frictionV')[0].checked == true))
+    {
+        this.frictionForcePrint()
+    }
+    if(($('#pressV')[0].checked == true))
+    {
+        this.pressForcePrint()
+    }
+    if(($('#sliceV')[0].checked == true))
+    {
+        this.sliceForcePrint()
+    }
+    if(($('#gravityV')[0].checked == true))
+    {
+        this.gravityForcePrint()
+    }
 }
 Brick.prototype.addForce = function (force) {
     let f = force.copy();
@@ -318,6 +343,14 @@ function slide (kostka,gravity,angle)
     force.rotate(-((PI / 2) - angle));
     kostka.addForce(force);
 }
+Brick.prototype.slide = function()
+{
+    let force;
+    force = createVector(0, this.mass * gravity);
+    force.rotate(-((PI / 2) - angle));
+    force.mult(Math.sin(angle));
+    kostka.addForce(force);
+}
 function friction(kostka,rownia,gravity,angle)
 {
     let force;
@@ -327,6 +360,14 @@ function friction(kostka,rownia,gravity,angle)
     force.mult(rownia.friction);
     force.mult(-1);
     kostka.addForce(force);
+}
+Brick.prototype.friction = function (frictionVal) {
+    let force;
+    force = createVector(0, this.mass * gravity);
+    force.rotate(-((PI / 2) - angle));
+    force.mult(frictionVal);
+    force.mult(-1);
+    this.addForce(force);
 }
 function drawArrow(base, vec, myColor) {
     push();
