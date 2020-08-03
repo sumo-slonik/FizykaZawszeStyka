@@ -106,14 +106,14 @@ function draw(){
     endShape();
     frameUpdate += 1;
     if($('#check_air')[0].checked == true){ // jeżeli zaznaczony został opór ośrodka
-      e.y += e.Vy*dt + 0.5*opor/e.m*e.Vy*dt*dt -0.5*9.81*dt*dt; // wzór na y(t)
-      e.x += e.Vx*dt -0.5*opor/e.m*e.Vx*dt*dt; // wzór na x(t)
-      e.Vx += (e.Ax - opor/e.m*e.Vx)*dt; // wzór na Vx(t)
+      e.y += e.Vy*dt + 0.5*opor/e.m*e.Vy*dt*dt/(Math.sqrt(scale+1)) -0.5*9.81*dt*dt; // wzór na y(t)
+      e.x += e.Vx*dt -0.5*opor/e.m*e.Vx*dt*dt/(Math.sqrt(scale+1)); // wzór na x(t)
+      e.Vx += (e.Ax - opor/e.m*e.Vx/(Math.sqrt(scale+1)))*dt; // wzór na Vx(t)
       if(Math.abs(e.Vy) < 0.2 && e.y >= sizeY - 8){
         e.Vy = 0;
         e.y = sizeY -7;
       }
-      else e.Vy += (e.Ay - opor/e.m*e.Vy)*dt; // wzór na Vy(t)
+      else e.Vy += (e.Ay - opor/e.m*e.Vy/(Math.sqrt(scale+1)))*dt; // wzór na Vy(t)
       if(e.y >= sizeY-7 && e.Vy >= 0 && e.Vy != 0){ // jeżeli piłka dotknie ziemi, to odbije się od niej zachowując 60% prędkośći
         e.Vy = -Math.abs(e.Vy*0.6);
       }
@@ -273,6 +273,8 @@ function start(){
     e.Vx = 0;
     e.Vy = 0;
     e.addVelocity(beginVx/(Math.sqrt(scale+1)),beginVy/(Math.sqrt(scale+1)));
+    console.log(e.Vx);
+    console.log(e.Vy);
   }
   startedAnimation = true;
   pause = false;
@@ -291,7 +293,7 @@ function stop(){
   $('#predkosc')[0].innerHTML = "0.00&nbspm/s";
   $('#wysokosc')[0].innerHTML = "0.00&nbspm";
   $('#czas')[0].innerHTML = "0.00&nbsps";
-  $('#odleglosc')[0].innerHTML = "0,00&nbspm";
+  $('#odleglosc')[0].innerHTML = "0.00&nbspm";
   t=0;
   beginVx = 0;
   beginVy = 0;

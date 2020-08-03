@@ -155,9 +155,7 @@ button:hover{
 	cursor: pointer;
 }
 
-.ranger::-moz-range-thumb, #zoom_range::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
+.ranger::-moz-range-thumb, #zoom_range::-moz-range-thumb {
 	width: 25px;
 	height: 25px;
 	border-radius: 50%;
