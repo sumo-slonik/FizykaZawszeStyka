@@ -6,6 +6,7 @@ y piłki obliczona będzie jako 493 - e.y zamiast samego e.y*/
 // wartość o jaką przesunie się czas w animacji uwzględniając
 //ilość klatek na sek oraz średni czas obliczania jednej klatki
 //wyznaczony eksperymentalnie
+let scale = 0.7;
 let dt = 0.01*8343/5000;
 let t = 0; //całkowity czas
 let e = new element(493,76,5); //obiekt który odpowiada piłce
@@ -18,13 +19,13 @@ let frameUpdate = 0; // przechowuje informację co ile klatek aktualizować para
 let beginVx = 0; //przechowuje początkową wartość Vx nadaną piłce
 let beginVy = 0; //przechowuje początkową wartość Vy nadaną piłce
 let setData = false; // flaga, true jeżeli dane animacji są już ustawione poprawnie
-let alfa = 0; // kąt rzutu wyliczony na podstawie Vx i Vy lub podany przez użytkownika
+let angle_count = 0; // kąt rzutu wyliczony na podstawie Vx i Vy lub podany przez użytkownika
 let v = 0; // prędkość początkowa wyliczona na podstawie Vx i Vy lub podana przez użytkownika
 let confirmed_angle = false; // flaga, true jeżeli poprawny kąt został podany przez użytkownika 
 let confirmed_v = false; // flaga, true jeżeli poprawna prędkość początkowa została podana przez użytkownika
 
 function setup(){
-  myCanvas = createCanvas(1113, 524);
+  myCanvas = createCanvas(1079, 524);
   myCanvas.parent('main');
   img = loadImage('img/wykres.png');
   frameRate(100);
@@ -33,14 +34,18 @@ function setup(){
   e.addForce(0, 9.81);
 }
 function draw(){
+  scale = $("#zoom_range")[0].value/(100/3);
   let opor = 0.5*Math.pow(1.07,$("#preasure_range_air")[0].value-50);
   e.m = 4*Math.pow(1.07, $("#mass_range_air")[0].value-50);
+  //background(img);
+  image(img,-75*scale,-500*scale,1079*(scale+1),524*(scale+1));
   if(startedAnimation){
     $('#h')[0].disabled = true; // gdy działa animacja, niektóre przyciski stają się nieaktywne
     $('#angle_button')[0].disabled = true;
     $('#reset_button')[0].disabled = false;
     $('#vel_button')[0].disabled = true;
     $('#check_air')[0].disabled = true;
+    $('#zoom_range')[0].disabled = true;
     if(!pause){
       $('#start_button')[0].disabled = true;
       $('#pause_button')[0].disabled = false;
@@ -58,6 +63,7 @@ function draw(){
     $('#start_button')[0].disabled = false;
     $('#pause_button')[0].disabled = true;
     $('#reset_button')[0].disabled = true;
+    $('#zoom_range')[0].disabled = false;
   }
   if(!$("#check_air")[0].checked || $("#check_air")[0].disabled){
     $(".ranger").attr("disabled",true);
@@ -71,9 +77,8 @@ function draw(){
   }
   fill(255);
   stroke('orange');
-  background(img);
   if(startedAnimation && !pause){ // gdy animacja została uruchomiona i nie jest wciśnięta pauza
-    t += dt;
+    t += dt/(Math.sqrt(1+scale));
     fill(255);
     if(e.x <= 1080) { // gdy jeszcze piłka nie wyleciała poza układ współrzędnych
       strokeWeight(1);
@@ -86,10 +91,10 @@ function draw(){
       curveVertex(e.x,e.y+7); // rysuje czerwony ślad za piłką
       endShape();
       if(frameUpdate % 7 == 0){ // wyliczenia parametrów animacji i ich wypisanie na ekran (domyślnie co 7 klatek)
-        $('#predkosc')[0].innerHTML = Math.round((velocity(e.Vx, e.Vy))* 100) / 100+"&nbspm/s";
-        $('#wysokosc')[0].innerHTML = Math.round(((492-e.y) < 0.2 ? 0 : 492-e.y) * 100) / 100+"&nbspm";
+        $('#predkosc')[0].innerHTML = Math.round((velocity(e.Vx/(scale+1), e.Vy/(scale+1)))* 100) / 100+"&nbspm/s";
+        $('#wysokosc')[0].innerHTML = Math.round(((492-e.y)/(scale+1) < 0.2 ? 0 : (492-e.y)/(scale+1)) * 100) / 100+"&nbspm";
         $('#czas')[0].innerHTML = Math.round(t * 100) / 100+"&nbsps";
-        $('#odleglosc')[0].innerHTML = Math.round((e.x - 73) * 100) / 100+"&nbspm";
+        $('#odleglosc')[0].innerHTML = Math.round((e.x - 75)/(scale+1) * 100) / 100+"&nbspm";
       }
     }
     else{ //jeżeli pauza jest aktywna, to jedynie należy podtrzymać czerwony ślad za piłką
@@ -130,8 +135,8 @@ function draw(){
     }
   }
   //Gdy uruchomiony został tryb wybierania myszką Vx i Vy, a animacja nie została jeszcze uruchomiona
-  //właściwy układ zaczyna się od 73 piksela w prawo od początku obiektu canvas (dlatego często występuje beginVx + 73)
-  else if(mouseX >= 73 && mouseX <= sizeX +73 && mouseY >= 0 && mouseY <= sizeY && !pause || setData && !pause ){
+  //właściwy układ zaczyna się od 75 piksela w prawo od początku obiektu canvas (dlatego często występuje beginVx + 75)
+  else if(mouseX >= 75 && mouseX <= sizeX +75 && mouseY >= 0 && mouseY <= sizeY && !pause || setData && !pause ){
     strokeWeight(3);
     let draw_x; // współrzędna x pukntu względem którego będzie rysowana linia i kropki
     let draw_y; // analogicznie dla współrzędnej y
@@ -149,10 +154,10 @@ function draw(){
       console.log(mouseX - 75);
       console.log(mouseY - e.y - 7.5);
       $('#angle')[0].value = Math.round(angle(beginVx, beginVy)*180/Math.PI * 100) / 100; //obliczanie kąta z dokładnością do 2 miejsc po przecinku
-      $('#velocity')[0].value = Math.round(velocity(beginVx, beginVy) * 100) / 100; // analogicznie prędkość początkowa
-      $('#height')[0].value = Math.round((493-e.y) * 100) / 100; // oraz wysokość
+      $('#velocity')[0].value = Math.round(velocity(beginVx/(scale+1), beginVy/(scale+1)) * 100) / 100; // analogicznie prędkość początkowa
+      $('#height')[0].value = Math.round((493-e.y)/(scale+1) * 100) / 100; // oraz wysokość
     }
-    line(73,e.y,draw_x,draw_y);
+    line(75,e.y,draw_x,draw_y);
     it_y = draw_y;
     // rysowanie kropek od miejsca kliknięcia myszką do granic układu współrzędnych. Wykona się, gdy użytkownik klinie na układ
     if(draw_y <= e.y){ // jeżeli Vy jest dodatnia
@@ -168,7 +173,7 @@ function draw(){
       }
     }
     it_x = draw_x;
-    while(it_x > 73){
+    while(it_x > 75){
       strokeWeight(3);
       point(it_x, draw_y); // rysowanie kropek wzdłuż osi OX
       it_x -= 5;
@@ -176,8 +181,8 @@ function draw(){
     textSize(17);
     fill(0);
     //wypisuje obok kropek aktualne wartości Vx i Vy
-    text((parseInt(Math.round(-draw_y + e.y + 7),10)).toString()+'m/s', draw_x,(e.y+draw_y)/2);
-    text((parseInt(Math.round(draw_x - 75))).toString()+'m/s', draw_x/2,draw_y);
+    text((parseInt(Math.round(-draw_y + e.y + 7)/(scale+1),10)).toString()+'m/s', draw_x,(e.y+draw_y)/2);
+    text((parseInt(Math.round(draw_x - 75)/(scale+1))).toString()+'m/s', draw_x/2,draw_y);
     beginVy = -Math.round(-draw_y + e.y + 7);
     beginVx = Math.round(draw_x - 75);
     fill(91,95,102);
@@ -188,6 +193,12 @@ function draw(){
   }
   //gdy zostanie wciśnięta pauza, należy rysować piłkę w tym samym miejscu i ślad za piłką też
   else{
+    if(pause){
+      $('#predkosc')[0].innerHTML = Math.round((velocity(e.Vx, e.Vy)/(scale+1))* 100) / 100+"&nbspm/s";
+      $('#wysokosc')[0].innerHTML = Math.round(((492-e.y)/(scale+1) < 0.2 ? 0 : (492-e.y)/(scale+1)) * 100) / 100+"&nbspm";
+      $('#czas')[0].innerHTML = Math.round(t * 100) / 100+"&nbsps";
+      $('#odleglosc')[0].innerHTML = Math.round((e.x - 75)/(scale+1) * 100) / 100+"&nbspm";
+    }
     fill(91,95,102);
     strokeWeight(1);
     ellipse(e.x,e.y,15,15);
@@ -200,14 +211,14 @@ function draw(){
 }
 
 function mouseClicked(){
-  if(!startedAnimation && !setData && mouseX >= 73 && mouseX <= sizeX + 73 && mouseY >= 0 && mouseY <= sizeY){
+  if(!startedAnimation && !setData && mouseX >= 75 && mouseX <= sizeX + 75 && mouseY >= 0 && mouseY <= sizeY){
     //jeżeli myszka zostanie kliknięta na układ współrzędnych i flaga setData jest nieaktywna,
     //to ustalamy parametry animacji na podstawie położenia myszki i setData = true
     console.log(beginVx);
     console.log(beginVy);
     setData = true;
   }
-  else if(!startedAnimation && setData && mouseX >= 73 && mouseX <= sizeX + 73 && mouseY >= 0 && mouseY <= sizeY){
+  else if(!startedAnimation && setData && mouseX >= 75 && mouseX <= sizeX + 75 && mouseY >= 0 && mouseY <= sizeY){
     //jeżeli ponownie myszka zostanie kliknięta, to znaczy, że użytkownik chce wybrać parametry jeszcze raz
     setData = false;
   }
@@ -261,7 +272,7 @@ function start(){
   if(!startedAnimation){
     e.Vx = 0;
     e.Vy = 0;
-    e.addVelocity(beginVx,beginVy);
+    e.addVelocity(beginVx/(Math.sqrt(scale+1)),beginVy/(Math.sqrt(scale+1)));
   }
   startedAnimation = true;
   pause = false;
@@ -300,11 +311,11 @@ function velocity(Vx, Vy){
 
 //funkcja wywoływana przy wciśnięciu przycisku "OK" przy wyborze kąta
 function confirm_angle(){
-  angle = $('#angle')[0].value;
+  angle_count = $('#angle')[0].value;
   //mechanizm sprawdzania, czy dane są poprawne:
-  angle = angle.replace(",",".");
+  angle_count = angle_count.replace(",",".");
   let reg = /-*\d+(\.\d+)?/;
-  if(reg.test(angle) && angle > -90 && angle < 90){ // sprawdza czy kąt jest liczbą z przedziału -90 do 90
+  if(reg.test(angle_count) && angle_count > -90 && angle_count < 90){ // sprawdza czy kąt jest liczbą z przedziału -90 do 90
     $('#info_velocity').css("color","rgba(232, 232, 233,0.9)");
   }
   else{
@@ -315,8 +326,8 @@ function confirm_angle(){
   if(confirmed_v){ // oblicza tylko wtedy jeżeli ma daną też prędkość początkową
     setData = true;
     //obliczone początkowe Vx i Vy na podstawie danej prędkości początkowej V i kąta alfa
-    beginVx = v/(Math.sqrt(Math.tan(-angle*Math.PI/180)*Math.tan(-angle*Math.PI/180) + 1));
-    beginVy = Math.tan(-angle*Math.PI/180)*v/(Math.sqrt(Math.tan(-angle*Math.PI/180)*Math.tan(-angle*Math.PI/180) + 1));
+    beginVx = (v/(Math.sqrt(Math.tan(-angle_count*Math.PI/180)*Math.tan(-angle_count*Math.PI/180) + 1)))*(scale+1);
+    beginVy = (Math.tan(-angle_count*Math.PI/180)*v/(Math.sqrt(Math.tan(-angle_count*Math.PI/180)*Math.tan(-angle_count*Math.PI/180) + 1)))*(scale+1);
   }
 }
 
@@ -335,8 +346,8 @@ function confirm_velocity(){
   confirmed_v = true;
   if(confirmed_angle){ //oblicza wtedy jak ma daną poprawną prędkość początkową
     setData = true;
-    beginVx = v/(Math.sqrt(Math.tan(-angle*Math.PI/180)*Math.tan(-angle*Math.PI/180) + 1));
-    beginVy = Math.tan(-angle*Math.PI/180)*v/(Math.sqrt(Math.tan(-angle*Math.PI/180)*Math.tan(-angle*Math.PI/180) + 1));
+    beginVx = (v/(Math.sqrt(Math.tan(-angle_count*Math.PI/180)*Math.tan(-angle_count*Math.PI/180) + 1)))*(scale+1);
+    beginVy = (Math.tan(-angle_count*Math.PI/180)*v/(Math.sqrt(Math.tan(-angle_count*Math.PI/180)*Math.tan(-angle_count*Math.PI/180) + 1)))*(scale+1);
   }
 }
 

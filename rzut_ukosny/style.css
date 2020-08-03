@@ -13,17 +13,15 @@ body{
 }
 #container{
 	box-shadow: 0px 0px 86px -22px rgba(91,95,110,1);
-	margin-top: -391px;
+	margin-top: -396px;
 	margin-left: -650px;
 	position: fixed;
 	left:50%;
 	top:50%;
-
 	width: 1300px;
 	background-color: #5b5f6e;
 	border-radius: 15px;
 	border-style: groove;
-	position: relative;
 	text-align: center;
 }
 
@@ -44,13 +42,13 @@ body{
 .con_for_input{
 	float: left;
 	background-color:#454a5c;
-	box-shadow: 0px 0px 25px 20px rgba(69,74,92,1);
 	margin-left: 40px;
 	margin-right: 40px;
-	margin-bottom: 15px;
-	margin-top: 15px;
 	text-align: center;
 	border-radius: 15px;
+	margin-top: 0;
+	margin-bottom: 0;
+	box-shadow: 0px 0px 15px 15px rgba(69,74,92,1);
 }
 .begin{
 	float: left;
@@ -84,14 +82,6 @@ body{
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 	text-align: center;
-}
-#start{
-	margin-top: 0px;
-	margin-bottom: 25px;
-	width: 250px;
-	height: 20px;
-	margin-left: auto;
-	margin-right: auto;
 }
 #welcome{
 	font-size: 28px;
@@ -139,10 +129,41 @@ button:hover{
 	border-radius: 15px;
 	text-align: center;
 }
-.ranger:disabled{
+.ranger:disabled, #zoom_range:disabled{
 	opacity: 0.5;
 }
-.ranger{
+.ranger, #zoom_range{
 	margin: 0;
 	height:2px;
+	margin-bottom:10px;
+	margin-top:10px;
+	-webkit-appearance: none;
+	border-radius: 5px;
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+}
+.ranger::-webkit-slider-thumb, #zoom_range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: #535050;
+	cursor: pointer;
+}
+
+.ranger::-moz-range-thumb, #zoom_range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: #535050;
+	cursor: pointer;
+}
+#start_menu{
+	float: left;
 }
