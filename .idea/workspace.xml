@@ -24,6 +24,7 @@
       <change beforePath="$PROJECT_DIR$/rownia/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rownia/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/sketch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rownia/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rzut_ukosny/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/rzut_ukosny/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +55,7 @@
       <recent name="D:\Fizyka\FizykaZawszeStyka\rownia" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FizykaZawszeStyka/rzut_ukosny/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -69,8 +70,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html (2)" />
+        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.sketch.js" />
       </list>
@@ -97,7 +98,9 @@
       <workItem from="1596217737832" duration="3739000" />
       <workItem from="1596222311587" duration="4711000" />
       <workItem from="1596229875840" duration="3171000" />
-      <workItem from="1596285673572" duration="3410000" />
+      <workItem from="1596285673572" duration="6542000" />
+      <workItem from="1596372613922" duration="293000" />
+      <workItem from="1596437030806" duration="2918000" />
     </task>
     <task id="LOCAL-00001" summary="poprawka kątu obrotu klocka">
       <created>1596032038660</created>
