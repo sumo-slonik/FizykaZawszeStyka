@@ -1,4 +1,3 @@
-@import "compass/css3";
 #container{
 	margin-left: auto;
 	margin-right: auto;
@@ -203,4 +202,7 @@ body{
 }
 #control{
 	margin-top: 15px;
+}
+button{
+	cursor: pointer;
 }

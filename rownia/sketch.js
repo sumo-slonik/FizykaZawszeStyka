@@ -4,6 +4,7 @@ let kostka;
 let rownia;
 let accepted_h = false;
 let accepted_a = false;
+let accepted_m = false;
 let frame = 100;
 let force_s = 0;
 let first_time = true;
@@ -14,6 +15,9 @@ let gravity = 9.81;
 let frictionParametr = 0;
 let accepted_f = false;
 let showForce = true;
+let time = 0;
+let counter = 0;
+
 
 function degrees_to_radians(degrees) {
     var pi = Math.PI;
@@ -24,56 +28,66 @@ function setup() {
     myCanvas = createCanvas(1100, 600);
     myCanvas.parent('main');
     img = loadImage('img/wykres.png');
-    frameRate(100);
+    frameRate(30);
     frame = 100;
     beginShape();
     noFill();
     kostka = new Brick(104, 500, 1);
-    rownia = new Inclined(55, 550, 55, 550, 55, 550,frictionParametr);
+    rownia = new Inclined(55, 550, 55, 550, 55, 550, frictionParametr);
 }
 
 function draw() {
     buttonCheck();
-    $('#angle')[0].value = Math.round($('#rangeAngle')[0].value/1.12);
     background(img);
     rownia.second = createVector(55, 550 - height);
     rownia.third = createVector(55 + 1 / Math.tan(angle) * height, 550);
-    rownia.friction=frictionParametr;
+    rownia.friction = frictionParametr;
     rownia.display();
-    if (accepted_a && accepted_h) {
-        if (first_time) {
-            kostka.position.x = 55;
-            kostka.position.y = 550 - height - kostka.wymiar;
-            kostka.velocity.mult(0);
-            kostka.rotationAngle = angle;
-            kostka.mass = mass;
-            first_time = false;
-            getDown = false;
-        }
+    if (accepted_a && accepted_h && accepted_m) {
+        if (first_time) defaultPose(kostka);
         if (startedAnimation) {
             kostka.checkEdges(rownia);
-            kostka.slide();
-            kostka.friction(rownia.friction);
-            $('#debug')[0].innerHTML= kostka.acceleration.y;
-            kostka.update();
-            if (getDown && kostka.rotationAngle > 0) {
-                kostka.rotationAngle -= 0.5;
-            } else if (getDown) {
-                kostka.rotationAngle = 0;
-                startedAnimation=false;
-                showForce=false;
+            if (getDown)
+            {
+                kostka.position.y=rownia.third.y-kostka.wymiar;
+                kostka.position.x=rownia.third.x;
+                if(kostka.rotationAngle > 0)
+                {
+                    kostka.rotationAngle -= 0.5;
+                }
+                else
+                {
+                    kostka.rotationAngle = 0;
+                    startedAnimation = false;
+                    showForce = false;
+                }
+            }else
+            {
+                kostka.slide();
+                //kostka.friction(rownia.friction);
+                kostka.update();
             }
         }
         kostka.display();
-        kostka.cetrePoint();
+        kostka.centrePoint();
     }
-    $('#predkosc')[0].innerHTML= kostka.velocity.mag() +"&nbspm/s";
+    // $('#debug')[0].innerHTML = rownia.third.x;
 }
-
+function defaultPose(kostka)
+{
+    time = 0;
+    kostka.position.x = 55;
+    kostka.position.y = 550 - height - kostka.wymiar;
+    kostka.velocity.mult(0);
+    kostka.acceleration.mult(0);
+    kostka.rotationAngle = angle;
+    kostka.mass = mass;
+    first_time = false;
+    getDown = false;
+}
 function start() {
-    if (getDown)
-    {
-        first_time=true;
+    if (getDown) {
+        first_time = true;
     }
     startedAnimation = true;
 }
@@ -103,14 +117,21 @@ function confirm_h() {
     }
     height *= 97;
 }
-function heightRanger()
-{
+
+function timePass(time) {
+    time += 1 / 100;
+    $('#debug')[0].innerHTML = time;
+}
+
+function heightRanger() {
     accepted_h = true;
     first_time = true;
-    $('#height')[0].value = $('#rangeHeight')[0].value/20;
+    $('#height')[0].value = $('#rangeHeight')[0].value / 20;
     height = document.getElementById('height').value;
     height *= 97;
+    document.getElementById('info_heigth').style.color = 'black';
 }
+
 function confirm_a() {
     first_time = true;
     angle = document.getElementById("angle").value;
@@ -127,14 +148,16 @@ function confirm_a() {
     }
     angle = degrees_to_radians(angle);
 }
-function angleRanger()
-{
+
+function angleRanger() {
     accepted_a = true;
     first_time = true;
-    $('#angle')[0].value = Math.floor($('#rangeAngle')[0].value/1.12);
+    $('#angle')[0].value = Math.floor($('#rangeAngle')[0].value / 1.12);
     angle = document.getElementById('angle').value;
     angle = degrees_to_radians(angle);
+    document.getElementById('info_angle').style.color = 'black';
 }
+
 function confirm_m() {
     first_time = true;
     mass = document.getElementById("mass").value;
@@ -142,14 +165,15 @@ function confirm_m() {
     let reg = /\d+(\.\d+)?/;
     if (reg.test(mass) && mass > 0 && mass <= 1000) {
         document.getElementById('info_mass').style.color = 'black';
-        accepted_a = true;
+        accepted_m = true;
     } else {
         document.getElementById('info_mass').style.color = 'red';
         let mass = 1;
-        accepted_a = false;
+        accepted_m = false;
         return;
     }
 }
+
 function confirm_f() {
     first_time = true;
     frictionParametr = document.getElementById("friction").value;
@@ -173,6 +197,7 @@ function Brick(x, y, mass) {
     this.acceleration = createVector(0, 0);
     this.rotationAngle = 0;
     this.wymiar = 50;
+    this.accelerationCopy= createVector(0, 0);
 }
 
 Brick.prototype.checkEdges = function (rownia) {
@@ -185,101 +210,134 @@ Brick.prototype.checkEdges = function (rownia) {
 }
 Brick.prototype.display = function () {
     push();
-    fill (236, 99, 32);
+    fill(236, 99, 32);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
     square(0, -this.wymiar, this.wymiar);
     pop();
     this.forcePrint();
+    this.otherVectorPrint();
 }
-Brick.prototype.cetrePoint = function () {
+Brick.prototype.centrePoint = function () {
     push();
     strokeWeight(10);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
-    point(0+this.wymiar/2, -this.wymiar/2,);
+    point(0 + this.wymiar / 2, -this.wymiar / 2,);
     pop();
 }
 Brick.prototype.gravityForcePrint = function () {
     push();
-    let start = createVector(+this.wymiar/2, -this.wymiar/2);
-    let end = createVector(0,this.mass*gravity);
+    let start = createVector(+this.wymiar / 2, -this.wymiar / 2);
+    let end = createVector(0, this.mass * gravity);
     strokeWeight(10);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
     end.rotate(-this.rotationAngle);
     end.mult(10);
-    drawArrow(start,end,'black');
+    drawArrow(start, end, 'black');
     pop();
 }
 Brick.prototype.sliceForcePrint = function () {
     push();
-    let start = createVector(+this.wymiar/2, -this.wymiar/2);
-    let end = createVector(this.mass*gravity*Math.sin(this.rotationAngle),0);
+    let start = createVector(+this.wymiar / 2, -this.wymiar / 2);
+    let end = createVector(this.mass * gravity * Math.sin(this.rotationAngle), 0);
     strokeWeight(10);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
     end.mult(10);
-    drawArrow(start,end,'red');
+    drawArrow(start, end, 'red');
     pop();
 }
 Brick.prototype.pressForcePrint = function () {
     push();
-    let start = createVector(+this.wymiar/2, -this.wymiar/2);
-    let end = createVector(0,this.mass*gravity*Math.cos(this.rotationAngle));
+    let start = createVector(+this.wymiar / 2, -this.wymiar / 2);
+    let end = createVector(0, this.mass * gravity * Math.cos(this.rotationAngle));
     strokeWeight(10);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
     end.mult(10);
-    drawArrow(start,end,'red');
+    drawArrow(start, end, 'red');
     pop();
 }
-Brick.prototype.frictionForcePrint=function(frictionVal)
-{
+Brick.prototype.frictionForcePrint = function (frictionVal) {
     push();
     let start = createVector(0, 0);
-    let end = createVector(-this.mass*gravity*Math.cos(this.rotationAngle)*frictionVal,0);
+    let end = createVector(-this.mass * gravity * Math.cos(this.rotationAngle) * frictionVal, 0);
     strokeWeight(10);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
     end.mult(10);
-    drawArrow(start,end,'red');
+    drawArrow(start, end, 'red');
     pop();
 }
-Brick.prototype.forcePrint = function()
+Brick.prototype.velocityVectorPrint= function()
 {
-    if(($('#frictionV')[0].checked == true))
-    {
+    push();
+    let start = createVector(+this.wymiar / 2, -this.wymiar / 2);
+    let end = this.velocity.copy()
+    strokeWeight(10);
+    translate(this.position.x, this.position.y + this.wymiar);
+    rotate(this.rotationAngle);
+    end.rotate(-this.rotationAngle);
+    end.mult(10);
+    drawArrow(start, end, 'blue');
+    pop();
+}
+Brick.prototype.accelerationVectorPrint= function()
+{
+    push();
+    let start = createVector(+this.wymiar / 2, -this.wymiar / 2);
+    let end = this.accelerationCopy.copy();
+    strokeWeight(10);
+    translate(this.position.x, this.position.y + this.wymiar);
+    rotate(this.rotationAngle);
+    end.rotate(-this.rotationAngle);
+    end.mult(10);
+    drawArrow(start, end, 'green');
+    pop();
+}
+Brick.prototype.otherVectorPrint = function(){
+    //
+    //
+    if (($('#velocityV')[0].checked == true)) {
+        this.velocityVectorPrint();
+    }
+    if (($('#accelerationV')[0].checked == true)) {
+        this.accelerationVectorPrint();
+    }
+}
+Brick.prototype.forcePrint = function () {
+    if (($('#frictionV')[0].checked == true)) {
         this.frictionForcePrint()
     }
-    if(($('#pressV')[0].checked == true))
-    {
+    if (($('#pressV')[0].checked == true)) {
         this.pressForcePrint()
     }
-    if(($('#sliceV')[0].checked == true))
-    {
+    if (($('#sliceV')[0].checked == true)) {
         this.sliceForcePrint()
     }
-    if(($('#gravityV')[0].checked == true))
-    {
+    if (($('#gravityV')[0].checked == true)) {
         this.gravityForcePrint()
     }
 }
 Brick.prototype.addForce = function (force) {
-    let f = force.copy();
-    f.div(this.mass);
-    this.acceleration.add(f);
+
+    let adding = force.copy();
+    adding.mult(1/this.mass);
+    this.acceleration.add(adding);
+    $('#debug')[0].innerHTML= kostka.acceleration.mag();
 }
 Brick.prototype.update = function () {
-    let acceleration_c = this.acceleration.copy();
-    let velocity_c = this.velocity.copy();
-    this.velocity.add(acceleration_c);
-    this.velocity.div(5);
-    if (this.velocity.x <= 0)
-    {
+    let accelerationC=this.acceleration.copy();
+    accelerationC.mult(1/30);
+    this.velocity.add(accelerationC);
+    if (this.velocity.x <= 0) {
         this.velocity.mult(0);
     }
-    this.position.add(velocity_c);
+    this.position.add(this.velocity);
+    $('#predkosc')[0].innerHTML = this.velocity.mag() + "&nbspm/s";
+    this.accelerationCopy=this.acceleration.copy();
     this.acceleration.mult(0);
 }
 
@@ -291,68 +349,72 @@ function Inclined(x1, y1, x2, y2, x3, y3, friction = 0, stroke = 4,) {
     this.friction = friction;
 }
 
-Inclined.prototype.display = function () {
-    strokeWeight(10);
+Inclined.prototype.display = function (kostka) {
+    if(this.third.x>1070)
+    {
+        // alert('Równia była za duża by zmieścić\nsię na ekranie, została zmniejszona\ndo maksymalnego rozmiaru dla zadanej wysokości');
+        this.third.x=1069;
+         $("#angle")[0].value=Math.floor(Math.atan(height/1069)*(180/PI));
+         confirm_a();
+    }
+    strokeWeight(12);
     point(this.first.x, this.first.y);
     point(this.second.x, this.second.y);
     point(this.third.x, this.third.y);
     strokeWeight(this.size);
     triangle(this.first.x, this.first.y, this.second.x, this.second.y, this.third.x, this.third.y);
 }
+Inclined.prototype.update = function () {
 
+}
 function buttonCheck() {
-    if ($('#check_friction')[0].checked == true)
-    {
+    if ($('#check_friction')[0].checked == true) {
         $('#friction')[0].disabled = false;
         $('#frictionButton')[0].disabled = false;
     }
-    if (accepted_a && accepted_h)
-    {
+    if (accepted_a && accepted_h && accepted_m) {
         $('#startButton')[0].disabled = false;
-    }else
-    {
+    } else {
         $('#startButton')[0].disabled = true;
         $('#startButton')[0].disabled = true;
         $('#resetButton')[0].disabled = true;
-
-
     }
     if (startedAnimation) {
         $('#startButton')[0].disabled = true;
         $('#pauseButton')[0].disabled = false;
         $('#resetButton')[0].disabled = false;
-        $(".input").prop("disabled",true);
+        $(".input").prop("disabled", true);
+        $(".ranger").prop("disabled", true);
 
-    }else
-    {
+    } else {
         $('#pauseButton')[0].disabled = true;
-        $(".input").prop("disabled",false);
+        $(".input").prop("disabled", false);
+        $(".ranger").prop("disabled", false);
 
     }
-    if (!$('#check_friction')[0].checked == true)
-    {
+    if (!$('#check_friction')[0].checked == true) {
         $('#friction')[0].disabled = true;
         $('#frictionButton')[0].disabled = true;
     }
 }
-function slide (kostka,gravity,angle)
-{
+
+function slide(kostka, gravity, angle) {
     let force;
     force = createVector(0, kostka.mass * gravity);
     force.mult(Math.sin(angle));
     force.rotate(-((PI / 2) - angle));
     kostka.addForce(force);
 }
-Brick.prototype.slide = function()
-{
+
+Brick.prototype.slide = function () {
     let force;
     force = createVector(0, this.mass * gravity);
     force.rotate(-((PI / 2) - angle));
     force.mult(Math.sin(angle));
-    kostka.addForce(force);
+    this.addForce(force);
 }
-function friction(kostka,rownia,gravity,angle)
-{
+
+function friction(kostka, rownia, gravity, angle) {
     let force;
     force = createVector(0, kostka.mass * gravity);
     force.mult(Math.cos(angle));
@@ -361,6 +423,7 @@ function friction(kostka,rownia,gravity,angle)
     force.mult(-1);
     kostka.addForce(force);
 }
+
 Brick.prototype.friction = function (frictionVal) {
     let force;
     force = createVector(0, this.mass * gravity);
@@ -369,18 +432,23 @@ Brick.prototype.friction = function (frictionVal) {
     force.mult(-1);
     this.addForce(force);
 }
+
 function drawArrow(base, vec, myColor) {
-    push();
-    stroke(myColor);
-    strokeWeight(3);
-    fill(myColor);
-    translate(base.x, base.y);
-    line(0, 0, vec.x, vec.y);
-    rotate(vec.heading());
-    let arrowSize = 7;
-    translate(vec.mag() - arrowSize, 0);
-    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-    pop();
+    if(vec.mag() == 0)
+    {
+    }else {
+        push();
+        stroke(myColor);
+        strokeWeight(3);
+        fill(myColor);
+        translate(base.x, base.y);
+        line(0, 0, vec.x, vec.y);
+        rotate(vec.heading());
+        let arrowSize = 7;
+        translate(vec.mag() - arrowSize, 0);
+        triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+        pop();
+    }
 }
 $(function () {
     $('#heightButton').click(confirm_h);
@@ -392,4 +460,6 @@ $(function () {
     $('#frictionButton').click(confirm_f);
     $("#rangeHeight").click(heightRanger);
     $("#rangeAngle").click(angleRanger);
+    $("#rangeHeight").change(heightRanger);
+    $("#rangeAngle").change(angleRanger);
 });
