@@ -18,6 +18,10 @@ let showForce = true;
 let time = 0;
 let counter = 0;
 
+function roundPrecised(number, precision) {
+    var power = Math.pow(10, precision);
+    return Math.round(number * power) / power;
+}
 
 function degrees_to_radians(degrees) {
     var pi = Math.PI;
@@ -37,18 +41,30 @@ function setup() {
 }
 
 function draw() {
+
     buttonCheck();
     background(img);
-    rownia.second = createVector(55, 550 - height);
-    rownia.third = createVector(55 + 1 / Math.tan(angle) * height, 550);
     rownia.friction = frictionParametr;
     rownia.display();
     if (accepted_a && accepted_h && accepted_m) {
-        if (first_time) defaultPose(kostka);
+        if (first_time)
+        {
+            rownia.friction = frictionParametr;
+            time=0;
+            counter=0;
+            defaultPose(kostka);
+        }
+
         if (startedAnimation) {
+            if (counter%3 == 0)
+            {
+                time+=0.1;
+                $('#debug')[0].innerHTML= roundPrecised(time,2)+"s";
+            }
             kostka.checkEdges(rownia);
             if (getDown)
             {
+                kostka.accelerationCopy.mult(0);
                 kostka.position.y=rownia.third.y-kostka.wymiar;
                 kostka.position.x=rownia.third.x;
                 if(kostka.rotationAngle > 0)
@@ -64,9 +80,10 @@ function draw() {
             }else
             {
                 kostka.slide();
-                //kostka.friction(rownia.friction);
+                kostka.friction(rownia.friction);
                 kostka.update();
             }
+            counter+=1;
         }
         kostka.display();
         kostka.centrePoint();
@@ -108,6 +125,7 @@ function confirm_h() {
     let reg = /\d+(\.\d+)?/;
     if (reg.test(height) && height > 0 && height <= 5) {
         document.getElementById('info_heigth').style.color = 'black';
+        $("#rangeHeight")[0].value = height*20;
         accepted_h = true;
     } else {
         document.getElementById('info_heigth').style.color = 'red';
@@ -139,6 +157,7 @@ function confirm_a() {
     let reg = /\d+(\.\d+)?/;
     if (reg.test(angle) && angle > 0 && angle <= 90) {
         document.getElementById('info_angle').style.color = 'black';
+        $("#rangeAngle")[0].value = angle*1.13;
         accepted_a = true;
     } else {
         document.getElementById('info_angle').style.color = 'red';
@@ -326,7 +345,7 @@ Brick.prototype.addForce = function (force) {
     let adding = force.copy();
     adding.mult(1/this.mass);
     this.acceleration.add(adding);
-    $('#debug')[0].innerHTML= kostka.acceleration.mag();
+    // $('#debug')[0].innerHTML= roundPrecised(kostka.acceleration.mag(),2);
 }
 Brick.prototype.update = function () {
     let accelerationC=this.acceleration.copy();
@@ -335,8 +354,10 @@ Brick.prototype.update = function () {
     if (this.velocity.x <= 0) {
         this.velocity.mult(0);
     }
+    this.velocity.mult(3.29);
     this.position.add(this.velocity);
-    $('#predkosc')[0].innerHTML = this.velocity.mag() + "&nbspm/s";
+    this.velocity.mult(1/3.29);
+    $('#predkosc')[0].innerHTML = roundPrecised(this.velocity.mag(),2) + "&nbspm/s";
     this.accelerationCopy=this.acceleration.copy();
     this.acceleration.mult(0);
 }
@@ -349,14 +370,17 @@ function Inclined(x1, y1, x2, y2, x3, y3, friction = 0, stroke = 4,) {
     this.friction = friction;
 }
 
-Inclined.prototype.display = function (kostka) {
+Inclined.prototype.display = function () {
+    this.second = createVector(55, 550 - height);
+    this.third = createVector(55 + 1 / Math.tan(angle) * height, 550);
+    // $('#debug')[0].innerHTML = this.third.x;
     if(this.third.x>1070)
     {
-        // alert('Równia była za duża by zmieścić\nsię na ekranie, została zmniejszona\ndo maksymalnego rozmiaru dla zadanej wysokości');
-        this.third.x=1069;
-         $("#angle")[0].value=Math.floor(Math.atan(height/1069)*(180/PI));
-         confirm_a();
+        alert('Utworzona równia wykraczała poza obszar roboczy więc, została zmniejszona');
+        $('#angle')[0].value = Math.floor(Math.atan(height/950)*(180/Math.PI));
+        confirm_a();
     }
+    this.third = createVector(55 + 1 / Math.tan(angle) * height, 550);
     strokeWeight(12);
     point(this.first.x, this.first.y);
     point(this.second.x, this.second.y);
@@ -395,6 +419,8 @@ function buttonCheck() {
     if (!$('#check_friction')[0].checked == true) {
         $('#friction')[0].disabled = true;
         $('#frictionButton')[0].disabled = true;
+        frictionParametr=0;
+        rownia.friction = frictionParametr;
     }
 }
 
