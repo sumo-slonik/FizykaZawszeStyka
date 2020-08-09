@@ -32,7 +32,7 @@ function setup() {
     myCanvas = createCanvas(1100, 600);
     myCanvas.parent('main');
     img = loadImage('img/wykres.png');
-    frameRate(30);
+    frameRate(10);
     frame = 100;
     beginShape();
     noFill();

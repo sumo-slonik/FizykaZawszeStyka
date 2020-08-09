@@ -6,22 +6,30 @@
 	position: relative;
 
 }
+body{
+	background: src(#tlo_czasteczki);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+
+}
 #aplikacja
 {
+	padding: 5px;
 	margin-left: auto;
 	margin-right: auto;
 	box-shadow: 0px 0px 86px -22px rgba(91,95,110,1);
 	-moz-box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
 	box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
 	width: 1200px;
-	background-color: #5b5f6e;
+	background: radial-gradient(#231f1f,#454a5c);
 	border-radius: 15px;
 	border-style: groove;
 	border-width: 10px;
 	transform: scale(62%);
 	transform-origin: top ;
 }
-#canvas1 {
+#tlo_czasteczki {
+	background: radial-gradient(#231f1f,#454a5c);
 	position: absolute;
 	overflow: hidden;
 }
@@ -38,14 +46,14 @@ body{
 #title{
 	font-size: 28px;
 	text-align: center;
-	background-color:#454a5c;
+	background: linear-gradient(#231f1f,#454a5c);
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 	letter-spacing: 2px;
 }
 .info_anim {
 	float: left;
-	box-shadow: 0px 0px 16px 12px rgba(69, 74, 92, 1);
+	box-shadow: 0px 0px 16px 12px rgb(27, 28, 34);
 	background-color: #454a5c;
 	border-radius: 15px;
 	font-size: 28px;
@@ -85,7 +93,7 @@ body{
 	text-align: center;
 	background-color:#454a5c;
 	text-align: center;
-	box-shadow: 0px 0px 25px 20px rgba(69,74,92,1);
+	box-shadow: 0px 0px 16px 12px rgb(27, 28, 34);
 
 	border-radius: 15px;
 
@@ -183,15 +191,18 @@ body{
 }
 .con_for_input_wektor
 {
+	width:200px;
+	padding: 10px;
 	float: left;
+	font-size: 20px;
 	background-color:#454a5c;
-	box-shadow: 0px 0px 25px 20px rgba(69,74,92,1);
+	box-shadow: 0px 0px 16px 12px rgb(27, 28, 34);
 	margin-left: 40px;
 	margin-right: 40px;
 	margin-bottom: 15px;
 	margin-top: 25px;
 	text-align: left;
-	border-radius: 15px;
+	border-radius: 20px;
 }
 .ranger::-moz-range-thumb {
 	width: 25px;
@@ -200,8 +211,15 @@ body{
 	background: #535050;
 	cursor: pointer;
 }
+.tresc{
+	float: left;
+}
 #control{
-	margin-top: 15px;
+	border: black;
+	margin-left: 150px;
+	margin-right: auto;
+	margin-top: 50px;
+	float: left;
 }
 button{
 	cursor: pointer;
