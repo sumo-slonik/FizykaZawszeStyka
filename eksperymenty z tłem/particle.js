@@ -12,10 +12,13 @@ let mouse = {
     radius: (canvas.height / 80) * (canvas.width / 80) / 2
 };
 
+
+
 window.addEventListener('mousemove',
     function (event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
+        let rect = canvas.getBoundingClientRect();
+        mouse.x = event.x- rect.left;
+        mouse.y = event.y- rect.top;
     }
 );
 

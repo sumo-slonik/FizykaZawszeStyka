@@ -17,7 +17,15 @@ let accepted_f = false;
 let showForce = true;
 let time = 0;
 let counter = 0;
+let speedOfAnimation = 100;
 
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
 function roundPrecised(number, precision) {
     var power = Math.pow(10, precision);
     return Math.round(number * power) / power;
@@ -32,16 +40,17 @@ function setup() {
     myCanvas = createCanvas(1100, 600);
     myCanvas.parent('main');
     img = loadImage('img/wykres.png');
-    frameRate(10);
+    frameRate(30);
     frame = 100;
     beginShape();
     noFill();
     kostka = new Brick(104, 500, 1);
     rownia = new Inclined(55, 550, 55, 550, 55, 550, frictionParametr);
+    $("#framerate")[0].value = speedOfAnimation;
 }
 
 function draw() {
-
+    speedOfAnimation = 100 - $("#framerate")[0].value;
     buttonCheck();
     background(img);
     rownia.friction = frictionParametr;
@@ -88,6 +97,7 @@ function draw() {
         kostka.display();
         kostka.centrePoint();
     }
+    sleep(speedOfAnimation);
     // $('#debug')[0].innerHTML = rownia.third.x;
 }
 function defaultPose(kostka)

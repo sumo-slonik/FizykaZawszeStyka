@@ -1,31 +1,38 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 #tlo_czasteczki{
-    position: absolute;
+    position:fixed;
     top:0; left: 0;
-    width:100%;
+    width: 30%;
     height: 100%;
-    background: radial-gradient(#0088cc,#005580);
+    background-attachment : fixed;
+    background: linear-gradient(#0088cc, #000000);
+}
+#left{
+    width: 30%;
+    height: 100%;
+}
+#right{
+    min-width: 30%;
+    min-height: 100%;
+    background: radial-gradient(#e50f3a, #000000);
+
+}
+#center{
+    width: 60%;
+    min-height: 100%;
+    background: radial-gradient(#ca0b38, #000000);
 }
 .szkielet{
     float: left;
+    background: black;
 }
 .clear{
     clear:both;
 }
-#left
-{
-    width: 200px;
-}
-#right
-{
-    width: 200px;
-}
+
 #container{
     padding: 5px;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0px 0px 86px -22px rgba(91,95,110,1);
