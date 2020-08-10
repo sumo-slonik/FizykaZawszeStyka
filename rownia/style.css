@@ -222,6 +222,11 @@ body{
 	box-shadow: 0px 0px 16px 12px rgb(27, 28, 34);
 	border-radius: 40px;
 }
+#content{
+	margin:auto;
+	width: 1200px;
+	background: radial-gradient(#111111, #051045);
+}
 button{
 	cursor: pointer;
 }

@@ -2,15 +2,11 @@
 #tlo_czasteczki{
     position:fixed;
     top:0; left: 0;
-    width: 30%;
     height: 100%;
     background-attachment : fixed;
     background: linear-gradient(#0088cc, #000000);
 }
-#left{
-    width: 30%;
-    height: 100%;
-}
+
 #right{
     min-width: 30%;
     min-height: 100%;
