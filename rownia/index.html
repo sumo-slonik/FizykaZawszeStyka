@@ -6,141 +6,161 @@
     <script src="p5.min.js"></script>
     <script src="jquery-3.5.1.min.js"></script>
     <script src="sketch.js"></script>
-    <script src="three.js/build/three.js"> </script>
+    <!--    <script src="upadek%20swobodny.js"></script>-->
+    <script src="three.js/build/three.js"></script>
 </head>
 <body>
 <div style="float: left;">
     <canvas id="tlo_czasteczki" style="float: left">
-        <script src="particle.js"> </script>
+        <script src="particle.js"></script>
     </canvas>
 </div>
 <div class="clear"></div>
 <div id="container">
     <div id="aplikacja">
-    <div id="title">
-        <h1>
-            Równia pochyła
-        </h1>
-    </div>
-    <div id="none_1" class="info_anim"></div>
-    <div id="velocity" class="info_anim">
-        prędkość
-        <div id="predkosc" class="value" style="float: right;">&nbsp0.00 m/s</div>
-        <div style="clear:both;"></div>
-    </div>
-    <div id="time" class="info_anim">
-        Czas
-        <div id="debug" class="value" style="float: right;">0.0s</div>
-        <div style="clear:both;"></div>
-    </div>
-    <div id="none_2" class="info_anim"></div>
-    <div class="clear"></div>
-    <div id="border">
-        <div id="main"></div>
-    </div>
-    <div id="menu">
-        <div class="con_for_input">
-            <div class="info1"> wysokość równi [m]</div>
-            <input type="range" id="rangeHeight" class="ranger"> </input>
-            <input id="height" type="text" class="input" value="Wpisz wysokość">
-            <button class="input" id="heightButton"><i class="icon-ok"> </i>
-            </button>
-            <div class="info" id="info_heigth"> Liczba z przedziału (0;5)</div>
+        <div id="title">
+            <h1>
+                Równia pochyła
+            </h1>
         </div>
-        <div class="con_for_input">
-            <div class="info1"> kąt nachylenia równi [°]</div>
-            <input type="range" id="rangeAngle" class="ranger"></input>
-            <input id="angle" type="text" class="input" value="Wpisz kąt nachylenia">
-            <button class="input" id="angleButton">
-                <i class="icon-ok"> </i>
-            </button>
-            <div class="info" id="info_angle"> Liczba z przedziału (0;90)</div>
+        <div id="none_1" class="info_anim"></div>
+        <div id="velocity" class="info_anim">
+            prędkość
+            <div id="predkosc" class="value" style="float: right;">&nbsp0.00 m/s</div>
+            <div style="clear:both;"></div>
         </div>
-        <div class="con_for_input">
-            <div class="info1"> masa klocka [kg]</div>
-            <input id="mass" type="text" class="input" placeholder="Wpisz mase klocka">
-            <button class="input" id="massButton">
-                <i class="icon-ok"> </i>
-            </button>
-            <div class="info" id="info_mass"> Liczba z przedziału (0;1000)</div>
+        <div id="time" class="info_anim">
+            Czas
+            <div id="debug" class="value" style="float: right;">0.0s</div>
+            <div style="clear:both;"></div>
         </div>
-        <div class="con_for_input">
-            <div class="info1"> współczynnik tarcia</div>
-            <input id="friction" type="text" class="input" placeholder="Wpisz współczynnik">
-            <button class="input" id="frictionButton">
-                <i class="icon-ok"> </i>
-            </button>
-            <div class="info" id="info_friction"> Liczba z przedziału (0;10)</div>
-            <input type="checkbox" id="check_friction"></input>
-        </div>
+        <div id="none_2" class="info_anim"></div>
         <div class="clear"></div>
+        <div id="border">
+            <div id="main"></div>
+        </div>
+        <div id="menu">
+            <div class="con_for_input">
+                <div class="info1"> wysokość równi [m]</div>
+                <input type="range" id="rangeHeight" class="ranger"> </input>
+                <input id="height" type="text" class="input" value="Wpisz wysokość">
+                <button class="input" id="heightButton"><i class="icon-ok"> </i>
+                </button>
+                <div class="info" id="info_heigth"> Liczba z przedziału (0;5)</div>
+            </div>
+            <div class="con_for_input">
+                <div class="info1"> kąt nachylenia równi [°]</div>
+                <input type="range" id="rangeAngle" class="ranger">
+                <input id="angle" type="text" class="input" value="Wpisz kąt nachylenia">
+                <button class="input" id="angleButton">
+                    <i class="icon-ok"> </i>
+                </button>
+                <div class="info" id="info_angle"> Liczba z przedziału (0;90)</div>
+            </div>
+            <div class="con_for_input">
+                <div class="info1"> masa klocka [kg]</div>
+                <input id="mass" type="text" class="input" placeholder="Wpisz mase klocka">
+                <button class="input" id="massButton">
+                    <i class="icon-ok"> </i>
+                </button>
+                <div class="info" id="info_mass"> Liczba z przedziału (0;1000)</div>
+            </div>
+            <div class="con_for_input">
+                <div class="info1"> współczynnik tarcia</div>
+                <input id="friction" type="text" class="input" placeholder="Wpisz współczynnik">
+                <button class="input" id="frictionButton">
+                    <i class="icon-ok"> </i>
+                </button>
+                <div class="info" id="info_friction"> Liczba z przedziału (0;10)</div>
+                <input type="checkbox" id="check_friction"></input>
+            </div>
+            <div class="clear"></div>
 
-        <div class="con_for_input_wektor">
-            <div class="info1"> <b>Pokaż wektory sił</b></div>
-            <input id="frictionV" type="checkbox" class="wektorShow">
-            <i class="wektorShow" > Siła tarcia</i>
-            <div class="clear"></div>
-            <input id="gravityV" type="checkbox" class="wektorShow">
-            <i class="wektorShow" > Siła grawitacji</i>
-            <div class="clear"></div>
-            <input id="pressV" type="checkbox" class="wektorShow">
-            <i class="wektorShow" > Siła nacisku</i>
-            <div class="clear"></div>
-            <input id="sliceV" type="checkbox" class="wektorShow">
-            <i class="wektorShow" > Siła zsuwająca</i>
-            <div class="clear"></div>
+            <div class="con_for_input_wektor">
+                <div class="info1"><b>Pokaż wektory sił</b></div>
+                <input id="frictionV" type="checkbox" class="wektorShow">
+                <i class="wektorShow"> Siła tarcia</i>
+                <div class="clear"></div>
+                <input id="gravityV" type="checkbox" class="wektorShow">
+                <i class="wektorShow"> Siła grawitacji</i>
+                <div class="clear"></div>
+                <input id="pressV" type="checkbox" class="wektorShow">
+                <i class="wektorShow"> Siła nacisku</i>
+                <div class="clear"></div>
+                <input id="sliceV" type="checkbox" class="wektorShow">
+                <i class="wektorShow"> Siła zsuwająca</i>
+                <div class="clear"></div>
+            </div>
+            <div class="con_for_input_wektor">
+                <div class="info1"><b>Pokaż pozostałe wektory</b></div>
+                <input id="accelerationV" type="checkbox" class="wektorShow">
+                <i class="wektorShow"> Przyśpieszenie</i>
+                <div class="clear"></div>
+                <input id="velocityV" type="checkbox" class="wektorShow">
+                <i class="wektorShow"> Prędkość</i>
+            </div>
         </div>
-        <div class="con_for_input_wektor">
-            <div class="info1"> <b>Pokaż pozostałe wektory</b></div>
-            <input id="accelerationV" type="checkbox" class="wektorShow">
-            <i class="wektorShow" > Przyśpieszenie</i>
-            <div class="clear"></div>
-            <input id="velocityV" type="checkbox" class="wektorShow">
-            <i class="wektorShow" > Prędkość</i>
-        </div>
-    </div>
-    <div id="control" class="wrap">
+        <div id="control" class="wrap">
 
-        <div id="Start" class="controls">
-            <button class="btn" id="startButton">
-                <i class="icon-play"> </i>
-            </button>
+            <div id="Start" class="controls">
+                <button class="btn" id="startButton">
+                    <i class="icon-play"> </i>
+                </button>
+            </div>
+            <div id="Pause" class="controls">
+                <button class="btn" id="pauseButton">
+                    <i class="icon-pause"> </i>
+                </button>
+            </div>
+            <div id="Reset" class="controls">
+                <button class="btn" id="resetButton">
+                    <i class="icon-to-start"> </i>
+                </button>
+            </div>
+            <div class="clear"></div>
+            <div>
+                <input type="range" id="framerate" class="ranger">
+                szybkość animacji
+            </div>
         </div>
-        <div id="Pause" class="controls">
-            <button class="btn" id="pauseButton">
-                <i class="icon-pause"> </i>
-            </button>
-        </div>
-        <div id="Reset" class="controls">
-            <button class="btn" id="resetButton">
-                <i class="icon-to-start"> </i>
-            </button>
-        </div>
-        <div class="clear"></div>
-        <div>
-            <input type="range" id="framerate" class="ranger">
-            szybkość animacji
-        </div>
-    </div>
         <div class="clear"></div>
     </div>
     <div class="clear"></div>
-    <div id ="content">
-        <h1>
-            Jak rozwiązyać każde zadanie z równią?
-        </h1>
+    <div id="content">
+        <div class="title">
+            <h1>
+                Jak rozwiązyać każde zadanie z równią?
+            </h1>
+        </div>
         <div id="upadek">
             <div class="tresc">
-                    Punktem wyjścia do rozwiązania zadań związanych z klockiem zjeżdrzającem z równi może <br>
-                    być dla nas upadek swobodny. Zobacz na animacji obok jak zmienia się przyśpieszenie i prędkość spadającego <br>
-                    klocka w zależności od jego masy.
+                Punktem wyjścia do rozwiązania zadań związanych z klockiem zjeżdrzającem z równi może <br>
+                być dla nas upadek swobodny. Zobacz na animacji obok jak zmienia się przyśpieszenie i prędkość
+                spadającego klocka w zależności od jego masy.<br>
+
+                <div class="inputContainerContent">
+                    <div class="infoContent"> masa klocka [kg]</div>
+                    <input id="massContent" type="text" class="input" placeholder="Wpisz mase klocka">
+                    <input type="range" id="rangeAngleContent" class="ranger">
+                    <button class="input" id="massButtonContent">
+                        <i class="icon-ok"> </i>
+                    </button>
+                    <div class="info" id="infoMassContent"> Liczba z przedziału (0;10)</div>
+                </div>
+                Możemy zauważyć że niezależnie od masy klocka, jego przyśpieszenie jest takie samo. <br>
+                wynika to bezpośrednio z drugiej zasady dynamiki Newtona. Siła grawitacji działająca <br>
+                na klocek ma wartość : F=m*g więc rośnie proporcjonalnie do masy klocka, przyśpieszenie <br>
+                obliczamy ze wzoru a=F/m widzimy więc, że podczas obliczania przyśpieszenia masa się skraca, <br>
+                a samo przyśpieszenie jest równe g.
             </div>
             <div id="animacja_upadek">
-                <div id="skrypt_upadek">
-                </div>
+                <div id="skrypt_upadek"></div>
+                <div class="clear"></div>
             </div>
+
         </div>
     </div>
+    <div class="clear"></div>
 </div>
 
 </body>

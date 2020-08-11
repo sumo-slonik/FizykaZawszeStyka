@@ -264,6 +264,7 @@ Brick.prototype.gravityForcePrint = function () {
     rotate(this.rotationAngle);
     end.rotate(-this.rotationAngle);
     end.mult(10);
+    end.mult(1/this.mass);
     drawArrow(start, end, 'black');
     pop();
 }
@@ -274,6 +275,7 @@ Brick.prototype.sliceForcePrint = function () {
     strokeWeight(10);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
+    end.mult(1/this.mass);
     end.mult(10);
     drawArrow(start, end, 'red');
     pop();
@@ -285,6 +287,7 @@ Brick.prototype.pressForcePrint = function () {
     strokeWeight(10);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
+    end.mult(1/this.mass);
     end.mult(10);
     drawArrow(start, end, 'red');
     pop();
@@ -296,6 +299,7 @@ Brick.prototype.frictionForcePrint = function (frictionVal) {
     strokeWeight(10);
     translate(this.position.x, this.position.y + this.wymiar);
     rotate(this.rotationAngle);
+    end.mult(1/this.mass);
     end.mult(10);
     drawArrow(start, end, 'red');
     pop();

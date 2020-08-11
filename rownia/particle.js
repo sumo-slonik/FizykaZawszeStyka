@@ -12,12 +12,10 @@ let mouse = {
     radius: (canvas.height / 80) * (canvas.width / 80) / 2
 };
 
-
 window.addEventListener('mousemove',
     function (event) {
-        let rect = canvas.getBoundingClientRect();
-        mouse.x = event.x - rect.left;
-        mouse.y = event.y - rect.top;
+        mouse.x = event.x;
+        mouse.y = event.y;
     }
 );
 
@@ -86,8 +84,8 @@ function init() {
         let size = (Math.random() * 5) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 5) - 2.5;
-        let directionY = (Math.random() * 5) - 2.5;
+        let directionX = (Math.random() * 3) - 1.5;
+        let directionY = (Math.random() * 3) - 1.5;
         let color = '#8C5523';
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
@@ -95,9 +93,9 @@ function init() {
         let size = (Math.random() * 3) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 5) - 2.5;
-        let directionY = (Math.random() * 5) - 2.5;
-        let color = '#8c5923';
+        let directionX = (Math.random() * 1) - 0.5;
+        let directionY = (Math.random() * 1) - 0.5;
+        let color = '#f05f28';
         noConectParticlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
 }
@@ -105,49 +103,47 @@ function init() {
 //funkcja odpowiedzialna za animowanie tła
 function animate() {
     requestAnimationFrame(animate);
-
     ctx.clearRect(0, 0, innerWidth, innerHeight);
+    connect()
     for (let i = 0; i < noConectParticlesArray.length; i++) {
         noConectParticlesArray[i].update();
     }
     for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].update();
     }
-
-
-    connect()
 }
-
-function connect() {
-    let opacityValue = 1;
-    for (let a = 0; a < particlesArray.length; a += 1) {
-        for (let b = 0; b < particlesArray.length; b += 1) {
-            let dx = particlesArray[a].x - particlesArray[b].x;
-            let dy = particlesArray[a].y - particlesArray[b].y;
-            let distance = dx * dx + dy * dy;
-            if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                opacityValue = 1 - distance / 20000;
-                ctx.strokeStyle = "rgba(140,85,31," + opacityValue + ')';
+function connect()
+{
+    let opacityValue=1;
+    for(let a = 0;a<particlesArray.length;a+=1)
+    {
+        for (let b =0;b<particlesArray.length;b+=1)
+        {
+            let dx = particlesArray[a].x-particlesArray[b].x;
+            let dy= particlesArray[a].y - particlesArray[b].y;
+            let distance = dx*dx + dy*dy;
+            if (distance < (canvas.width/7)*(canvas.height/7))
+            {
+                opacityValue=1-distance/20000;
+                ctx.strokeStyle="rgb(148, 0, 17,"+opacityValue+')';
                 ctx.lineWidth = 1;
                 ctx.beginPath();
-                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                ctx.moveTo(particlesArray[a].x,particlesArray[a].y);
+                ctx.lineTo(particlesArray[b].x,particlesArray[b].y);
                 ctx.stroke();
             }
         }
     }
 }
-
 //zmiana wielkości ekranu żeby się nie psuło
 window.addEventListener('resize',
     function () {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
-        mouse.radius = (canvas.height / 80) * (canvas.width / 80) / 2;
-        init();
+            canvas.width=innerWidth;
+            canvas.height=innerHeight;
+            mouse.radius = (canvas.height/80) * (canvas.width/80) / 2;
+            init();
     }
 )
 
-document.body.style.background = 'url(' + canvas.toDataURL() + ')';
 init();
 animate();

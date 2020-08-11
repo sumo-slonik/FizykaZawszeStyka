@@ -21,9 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3c9c7790-244e-4d23-a0b0-30f445eb22eb" name="Default Changelist" comment="poprawka kątu obrotu klocka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eksperymenty z tłem/particle.js" beforeDir="false" afterPath="$PROJECT_DIR$/eksperymenty z tłem/particle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eksperymenty z tłem/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/eksperymenty z tłem/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rownia/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rownia/particle.js" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/particle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rownia/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/sketch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rownia/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rownia/upadek swobodny.js" beforeDir="false" afterPath="$PROJECT_DIR$/rownia/upadek swobodny.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +68,7 @@
       <recent name="D:\Fizyka\FizykaZawszeStyka\eksperymenty z tłem" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (3)">
+  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FizykaZawszeStyka/rzut_ukosny/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -84,10 +86,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html (3)" />
         <item itemvalue="JavaScript Debug.index.html (2)" />
-        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.index.html (3)" />
+        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="Node.js.sketch.js" />
       </list>
     </recent_temporary>
@@ -131,7 +133,9 @@
       <workItem from="1596981073865" duration="474000" />
       <workItem from="1596981705198" duration="505000" />
       <workItem from="1596990696696" duration="7657000" />
-      <workItem from="1597091151242" duration="3287000" />
+      <workItem from="1597091151242" duration="3795000" />
+      <workItem from="1597134788182" duration="2870000" />
+      <workItem from="1597153849301" duration="6393000" />
     </task>
     <task id="LOCAL-00001" summary="poprawka kątu obrotu klocka">
       <created>1596032038660</created>
