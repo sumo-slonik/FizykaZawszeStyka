@@ -1,4 +1,38 @@
+#top_footer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    text-align: center;
+    width: 100vw;
+    z-index: 5;
+}
 
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+header li {
+    font-size: 5vh;
+    width: 100%;
+}
+
+header a {
+    padding: 20px;
+    display: block;
+    text-decoration: none;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#top_footer :hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
 #tlo_czasteczki{
     position:fixed;
     top:0; left: 0;
@@ -25,19 +59,3 @@
 .clear{
     clear:both;
 }
-
-#container{
-    padding: 5px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0px 0px 86px -22px rgba(91,95,110,1);
-    -moz-box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
-    box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
-    width: 1200px;
-    background: radial-gradient(#231f1f,#454a5c);
-    border-radius: 15px;
-    border-style: groove;
-    border-width: 10px;
-    transform: scale(62%);
-    transform-origin: top ;}
