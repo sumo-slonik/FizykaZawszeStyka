@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ZDERZENIA</title>
+
+    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <script src = "p5.min.js"></script>
+    <script src = "jquery-3.5.1.min.js"></script>
+    <link rel = "stylesheet" type="text/css" href="fontello-0bb7b243/css/fontello.css">
+    <script src = "sketch.js"></script>
+
+</head>
+<body>
+    <div id = "container">
+        <div id = "title">
+            <h1>ZDERZENIA</h1>
+        </div>
+        <div id = "check">
+            <div id = "first">
+                <label><input type = "radio" id = "zderzenie_sprezyste" name = "zderzenie" onchange = "change()" value = "Zderzenie_sprezyste" checked>Zderzenie sprezyste</label>
+            </div>
+            <div id = "second">
+                <label><input type = "radio" id = "zderzenie_niesprezyste" name = "zderzenie" onchange = "change()" value = "Zderzenie_niesprezyste">Zderzenie niesprezyste</label>
+            </div>
+        </div>
+
+        <div id = "main">
+            <div class = "firstBall">
+                <div class = "input">
+                    <div class = "info1">Prędkość początkowa 1-szej kulki [m/s]</div>
+                    <input id = "velocity1" type = "text" class = "input">
+                    <button class = "okButton" id = "vButton" onclick = "getValue('velocity1')">OK</button>
+                </div>
+                <div class = "input">
+                    <div class = "info1">Waga 1-szej kulki [kg]</div>
+                    <input id = "weight1" type = "text" class = "input">
+                    <button class = "okButton" id = "wButton" onclick = "getValue('weight1')">OK</button>
+                </div>
+            </div>
+            <div class = "secondBall">
+                <div class = "input">
+                    <div class = "info1">Prędkość początkowa 2-giej kulki [m/s]</div>
+                    <input id = "velocity2" type = "text" class = "input">
+                    <button class = "okButton" id = "vButton2" onclick = "getValue('velocity2')">OK</button>
+                </div>
+                <div class = "input">
+                    <div class = "info1">Waga 2-giej kulki [kg]</div>
+                    <input id = "weight2" type = "text" class = "input">
+                    <button class = "okButton" id = "wButton2" onclick = "getValue('weight2'); findResult(); firstLoop()">OK</button>
+                </div>
+            </div>
+            <!--Miejsce na canvas-->
+            <div id = "canvas">
+                <script type = "text/javascript">
+                    afterLoad();
+                </script>
+            </div>
+        </div>
+
+        <div id = "menu">
+            <div id = "buttons">
+                <button id = "start" class = "menuButton" onclick = "playAnimation()">
+                    <i class = "icon-play"></i>
+                </button>
+                <button id = "pause" class = "menuButton" onclick = "pauseAnimation()">
+                    <i class = "icon-pause"></i>
+                </button>
+                <button id = "stop" class = "menuButton" onclick = "restartAnimation()">
+                    <i class = "icon-to-start"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
