@@ -5,8 +5,8 @@ let weight2 = 0;
 let c_w;
 let c_h;
 let tab;
-let z = 0;
-let w = 0;
+let z = 0; //położenie pierwszej kulki
+let w = 0; // położenie drugiej kulki
 let vFirstBall = 1; //potrzebne do animacji
 let vSecondBall = 1; //potrzebne do animacji
 let vThirdBall = 0;
