@@ -12,68 +12,84 @@
 
 </head>
 <body>
-    <div id = "container">
-        <div id = "title">
-            <h1>ZDERZENIA</h1>
-        </div>
-        <div id = "check">
-            <div id = "first">
-                <label><input type = "radio" id = "zderzenie_sprezyste" name = "zderzenie" onchange = "change()" value = "Zderzenie_sprezyste" checked>Zderzenie sprezyste</label>
+    <div id = "particles-js">
+        <div id = "container">
+            <div id = "title">
+                <h1>ZDERZENIA</h1>
             </div>
-            <div id = "second">
-                <label><input type = "radio" id = "zderzenie_niesprezyste" name = "zderzenie" onchange = "change()" value = "Zderzenie_niesprezyste">Zderzenie niesprezyste</label>
-            </div>
-        </div>
-
-        <div id = "main">
-            <div class = "firstBall">
-                <div class = "input">
-                    <div class = "info1">Prędkość początkowa 1-szej kulki [m/s]</div>
-                    <input id = "velocity1" type = "text" class = "input">
-                    <button class = "okButton" id = "vButton" onclick = "getValue('velocity1')">OK</button>
+            <div id = "check">
+                <div id = "first">
+                    <label><input type = "radio" id = "zderzenie_sprezyste" name = "zderzenie" onchange = "change()" value = "Zderzenie_sprezyste" checked>Zderzenie sprezyste</label>
                 </div>
-                <div class = "input">
-                    <div class = "info1">Waga 1-szej kulki [kg]</div>
-                    <input id = "weight1" type = "text" class = "input">
-                    <button class = "okButton" id = "wButton" onclick = "getValue('weight1')">OK</button>
+                <div id = "second">
+                    <label><input type = "radio" id = "zderzenie_niesprezyste" name = "zderzenie" onchange = "change()" value = "Zderzenie_niesprezyste">Zderzenie niesprezyste</label>
+                </div>
+                <div id = "third">
+                    <label><input type = "checkbox" id = "vector" name = "wektory" value = "Przeciwne_kierunki">Przeciwne kierunki</label>
                 </div>
             </div>
-            <div class = "secondBall">
-                <div class = "input">
-                    <div class = "info1">Prędkość początkowa 2-giej kulki [m/s]</div>
-                    <input id = "velocity2" type = "text" class = "input">
-                    <button class = "okButton" id = "vButton2" onclick = "getValue('velocity2')">OK</button>
+
+            <div id = "main">
+                <div id = "firstBall">
+                    <div class = "input">
+                        <div class = "info1">Prędkość 1-szej kulki [m/s]</div>
+                        <input id = "velocity1" type = "text" class = "input">
+                        <button class = "okButton" id = "vButton" onclick = "getValue('velocity1')">OK</button>
+                    </div>
+                    <div class = "input">
+                        <div class = "info1">Waga 1-szej kulki [kg]</div>
+                        <input id = "weight1" type = "text" class = "input">
+                        <button class = "okButton" id = "wButton" onclick = "getValue('weight1')">OK</button>
+                    </div>
                 </div>
-                <div class = "input">
-                    <div class = "info1">Waga 2-giej kulki [kg]</div>
-                    <input id = "weight2" type = "text" class = "input">
-                    <button class = "okButton" id = "wButton2" onclick = "getValue('weight2'); findResult(); firstLoop()">OK</button>
+                <div id = "secondBall">
+                    <div class = "input">
+                        <div class = "info1">Prędkość 2-giej kulki [m/s]</div>
+                        <input id = "velocity2" type = "text" class = "input">
+                        <button class = "okButton" id = "vButton2" onclick = "getValue('velocity2')">OK</button>
+                    </div>
+                    <div class = "input">
+                        <div class = "info1">Waga 2-giej kulki [kg]</div>
+                        <input id = "weight2" type = "text" class = "input">
+                        <button class = "okButton" id = "wButton2" onclick = "getValue('weight2'); findResult(); firstLoop()">OK</button>
+                    </div>
+                </div>
+                <div class = "thirdSituation">
+                    <div class = "info1">Prędkość po zderzeniu <br>kulek o przeciwnych <br>kierunkach [m/s]</div>
+                    <input id = "velocity3" type = "text" class = "input">
+                </div>
+                <!--Miejsce na canvas-->
+                <div id = "canvas">
+                    <script type = "text/javascript">
+                        afterLoad();
+                    </script>
                 </div>
             </div>
-            <!--Miejsce na canvas-->
-            <div id = "canvas">
-                <script type = "text/javascript">
-                    afterLoad();
-                </script>
+
+            <div id = "menu">
+                <div id = "buttons">
+                    <button id = "start" class = "menuButton" title = "Start" onclick = "playAnimation()">
+                        <i class = "icon-play"></i>
+                    </button>
+                    <button id = "pause" class = "menuButton" title = "Pause" onclick = "pauseAnimation()">
+                        <i class = "icon-pause"></i>
+                    </button>
+                    <button id = "stop" class = "menuButton" title = "Restart" onclick = "restartAnimation()">
+                        <i class = "icon-to-start"></i>
+                    </button>
+                </div>
+
             </div>
         </div>
-
-        <div id = "menu">
-            <div id = "buttons">
-                <button id = "start" class = "menuButton" onclick = "playAnimation()">
-                    <i class = "icon-play"></i>
-                </button>
-                <button id = "pause" class = "menuButton" onclick = "pauseAnimation()">
-                    <i class = "icon-pause"></i>
-                </button>
-                <button id = "stop" class = "menuButton" onclick = "restartAnimation()">
-                    <i class = "icon-to-start"></i>
-                </button>
-            </div>
-
-        </div>
-
     </div>
+
+
+    <script src = "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS.load('particles-js', 'particles.json', function(){
+            console.log('loaded...');
+        });
+    </script>
 
 </body>
 </html>
