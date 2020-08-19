@@ -79,7 +79,7 @@ function init() {
     noConectParticlesArray = [];
     //to ile ma być cząsteczek
     let numberParticles = (canvas.height * canvas.width) / 9000;
-    let nuberOfNoConect = (canvas.height * canvas.width) / 4000;
+    let nuberOfNoConect = (canvas.height * canvas.width) / 3000;
     for (let i = 0; i < numberParticles; i++) {
         let size = (Math.random() * 5) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);

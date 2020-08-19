@@ -8,8 +8,9 @@ export default class Brick{
         this.rotationAngle = 0;
         this.wymiar = 50;
         this.accelerationCopy= nameSpace.createVector(0, 0);
+        this.nameSpace=nameSpace;
     }
-    checkEdges(rownia,nameSpace) {
+    checkEdges(rownia) {
         if (this.position.x > 1600 || this.position.x < 0 || this.position.y > 600 || this.position.y < 0 || this.position.x > rownia.third.x) {
             this.velocity.mult(0);
         }
@@ -17,98 +18,98 @@ export default class Brick{
             getDown = true;
         }
     }
-    display(nameSpace) {
-        nameSpace.push();
-        nameSpace.fill(236, 99, 32);
-        nameSpace.translate(this.position.x, this.position.y + this.wymiar);
-        nameSpace.rotate(this.rotationAngle);
-        nameSpace.square(0, -this.wymiar, this.wymiar);
-        nameSpace.pop();
+    display() {
+        this.nameSpace.push();
+        this.nameSpace.fill(236, 99, 32);
+        this.nameSpace.translate(this.position.x, this.position.y+this.wymiar);
+        this.nameSpace.rotate(this.rotationAngle);
+        this.nameSpace.square(0, -this.wymiar, this.wymiar);
+        this.nameSpace.pop();
         this.forcePrint();
         this.otherVectorPrint();
     }
-    centrePoint(nameSpace){
-        nameSpace.push();
-        nameSpace.strokeWeight(10);
-        nameSpace.translate(this.position.x, this.position.y + this.wymiar);
-        nameSpace.rotate(this.rotationAngle);
-        nameSpace.point(0 + this.wymiar / 2, -this.wymiar / 2,);
-        nameSpace.pop();
+    centrePoint(){
+        this.nameSpace.push();
+        this.nameSpace.strokeWeight(10);
+        this.nameSpace.translate(this.position.x, this.position.y + this.wymiar);
+        this.nameSpace.rotate(this.rotationAngle);
+        this.nameSpace.point(0 + this.wymiar / 2, -this.wymiar / 2,);
+        this.nameSpace.pop();
     }
-    gravityForcePrint (nameSpace) {
-        nameSpace.push();
-        let start = nameSpace.createVector(+this.wymiar / 2, -this.wymiar / 2);
-        let end = nameSpace.createVector(0, this.mass * gravity);
-        nameSpace.strokeWeight(10);
-        nameSpace.translate(this.position.x, this.position.y + this.wymiar);
-        nameSpace.rotate(this.rotationAngle);
+    gravityForcePrint () {
+        this.nameSpace.push();
+        let start = this.nameSpace.createVector(+this.wymiar / 2, -this.wymiar / 2);
+        let end = this.nameSpace.createVector(0, this.mass * gravity);
+        this.nameSpace.strokeWeight(10);
+        this.nameSpace.translate(this.position.x, this.position.y + this.wymiar);
+        this.nameSpace.rotate(this.rotationAngle);
         end.rotate(-this.rotationAngle);
         end.mult(10);
         end.mult(1/this.mass);
-        drawArrow(start, end, 'black');
-        nameSpace.pop();
+        drawArrow(start, end, 'black',this.nameSpace);
+        this.nameSpace.pop();
     }
-    sliceForcePrint (nameSpace) {
-        nameSpace.push();
-        let start = nameSpace.createVector(+this.wymiar / 2, -this.wymiar / 2);
-        let end = nameSpace.createVector(this.mass * gravity * Math.sin(this.rotationAngle), 0);
-        nameSpace.translate(this.position.x, this.position.y + this.wymiar);
-        nameSpace.rotate(this.rotationAngle);
+    sliceForcePrint () {
+        this.nameSpace.push();
+        let start = this.nameSpace.createVector(+this.wymiar / 2, -this.wymiar / 2);
+        let end = this.nameSpace.createVector(this.mass * gravity * Math.sin(this.rotationAngle), 0);
+        this.nameSpace.translate(this.position.x, this.position.y + this.wymiar);
+        this.nameSpace.rotate(this.rotationAngle);
         end.mult(1/this.mass);
         end.mult(10);
-        drawArrow(start, end, 'red');
-        nameSpace.pop();
+        drawArrow(start, end, 'red',this.nameSpace);
+        this.nameSpace.pop();
     }
-    pressForcePrint  (nameSpace) {
-        nameSpace.push();
-        let start = nameSpace.createVector(+this.wymiar / 2, -this.wymiar / 2);
-        let end = nameSpace.createVector(0, this.mass * gravity * Math.cos(this.rotationAngle));
-        nameSpace.strokeWeight(10);
-        nameSpace.translate(this.position.x, this.position.y + this.wymiar);
-        nameSpace.rotate(this.rotationAngle);
+    pressForcePrint  () {
+        this.nameSpace.push();
+        let start = this.nameSpace.createVector(+this.wymiar / 2, -this.wymiar / 2);
+        let end = this.nameSpace.createVector(0, this.mass * gravity * Math.cos(this.rotationAngle));
+        this.nameSpace.strokeWeight(10);
+        this.nameSpace.translate(this.position.x, this.position.y + this.wymiar);
+        this.nameSpace.rotate(this.rotationAngle);
         end.mult(1/this.mass);
         end.mult(10);
-        drawArrow(start, end, 'red');
-        nameSpace.pop();
+        drawArrow(start, end, 'red',this.nameSpace);
+        this.nameSpace.pop();
     }
 
-    frictionForcePrint (frictionVal,nameSpace) {
-        nameSpace.push();
-        let start = nameSpace.createVector(0, 0);
-        let end = nameSpace.createVector(-this.mass * gravity * Math.cos(this.rotationAngle) * frictionVal, 0);
-        nameSpace.strokeWeight(10);
-        nameSpace.translate(this.position.x, this.position.y + this.wymiar);
-        nameSpace.rotate(this.rotationAngle);
+    frictionForcePrint (frictionVal) {
+        this.nameSpace.push();
+        let start = this.nameSpace.createVector(0, 0);
+        let end = this.nameSpace.createVector(-this.mass * gravity * Math.cos(this.rotationAngle) * frictionVal, 0);
+        this.nameSpace.strokeWeight(10);
+        this.nameSpace.translate(this.position.x, this.position.y + this.wymiar);
+        this.nameSpace.rotate(this.rotationAngle);
         end.mult(1/this.mass);
         end.mult(10);
-        drawArrow(start, end, 'red');
-        nameSpace.pop();
+        drawArrow(start, end, 'red',this.nameSpace);
+        this.nameSpace.pop();
     }
-    velocityVectorPrint(nameSpace)
+    velocityVectorPrint()
     {
-        nameSpace.push();
-        let start = nameSpace.createVector(+this.wymiar / 2, -this.wymiar / 2);
+        this.nameSpace.push();
+        let start = this.nameSpace.createVector(+this.wymiar / 2, -this.wymiar / 2);
         let end = this.velocity.copy()
-        nameSpace.strokeWeight(10);
-        nameSpace.translate(this.position.x, this.position.y + this.wymiar);
-        nameSpace.rotate(this.rotationAngle);
+        this.nameSpace.strokeWeight(10);
+        this.nameSpace.translate(this.position.x, this.position.y + this.wymiar);
+        this.nameSpace.rotate(this.rotationAngle);
         end.rotate(-this.rotationAngle);
         end.mult(10);
-        drawArrow(start, end, 'blue');
-        nameSpace.pop();
+        drawArrow(start, end, 'blue',this.nameSpace);
+        this.nameSpace.pop();
     }
-    accelerationVectorPrint(nameSpace)
+    accelerationVectorPrint()
     {
-        nameSpace.push();
+        this.nameSpace.push();
         let start = createVector(+this.wymiar / 2, -this.wymiar / 2);
         let end = this.accelerationCopy.copy();
-        nameSpace.strokeWeight(10);
-        nameSpace.translate(this.position.x, this.position.y + this.wymiar);
-        nameSpace.rotate(this.rotationAngle);
+        this.nameSpace.strokeWeight(10);
+        this.nameSpace.translate(this.position.x, this.position.y + this.wymiar);
+        this.nameSpace.rotate(this.rotationAngle);
         end.rotate(-this.rotationAngle);
         end.mult(10);
-        drawArrow(start, end, 'green');
-        nameSpace.pop();
+        drawArrow(start, end, 'green',this.nameSpace);
+        this.nameSpace.pop();
     }
     otherVectorPrint (){
 
@@ -133,13 +134,13 @@ export default class Brick{
             this.gravityForcePrint()
         }
     }
-    addForce (force,nameSpace) {
+    addForce (force) {
 
         let adding = force.copy();
         adding.mult(1/this.mass);
         this.acceleration.add(adding);
     }
-    update (nameSpace) {
+    update () {
         let accelerationC=this.acceleration.copy();
         accelerationC.mult(1/30);
         this.velocity.add(accelerationC);
@@ -149,14 +150,14 @@ export default class Brick{
         this.accelerationCopy=this.acceleration.copy();
         this.acceleration.mult(0);
     }
-    slide (nameSpace) {
+    slide () {
         let force;
-        force = nameSpace.createVector(0, this.mass * gravity);
+        force = this.nameSpace.createVector(0, this.mass * gravity);
         force.rotate(-((PI / 2) - angle));
         force.mult(Math.sin(angle));
         this.addForce(force);
     }
-    friction  (frictionVal,nameSpace) {
+    friction  (frictionVal){
         let force;
         force = createVector(0, this.mass * gravity);
         force.rotate(-((PI / 2) - angle));
@@ -167,37 +168,35 @@ export default class Brick{
 }
 
 
-class inclined{
-    constructor(x1, y1, x2, y2, x3, y3, friction = 0, stroke = 4,nameSpace)
+export class Inclined{
+    constructor(first,second,third, friction = 0, stroke = 4,nameSpace)
     {
-        this.first = nameSpace.createVector(x1, y1);
-        this.second = nameSpace.createVector(x2, y2);
-        this.third = nameSpace.createVector(x3, y3);
+        this.first = first;
+        this.second = second;
+        this.third = third;
         this.size = stroke;
         this.friction = friction;
+        this.nameSpace = nameSpace;
     }
-    display (nameSpace)
+    display ()
     {
-        this.second = nameSpace.createVector(55, 550 - height);
-        this.third = nameSpace.createVector(55 + 1 / Math.tan(angle) * height, 550);
-        if(this.third.x>1070)
-        {
-            alert('Utworzona równia wykraczała poza obszar roboczy więc, została zmniejszona');
-            $('#angle')[0].value = Math.floor(Math.atan(height/950)*(180/Math.PI));
-            confirm_a();
-        }
-        this.third = nameSpace.createVector(55 + 1 / Math.tan(angle) * height, 550);
-        nameSpace.strokeWeight(12);
-        nameSpace.point(this.first.x, this.first.y);
-        nameSpace.point(this.second.x, this.second.y);
-        nameSpace.point(this.third.x, this.third.y);
-        nameSpace.strokeWeight(this.size);
-        nameSpace.triangle(this.first.x, this.first.y, this.second.x, this.second.y, this.third.x, this.third.y);
+        // if(this.third.x>1070)
+        // {
+        //     alert('Utworzona równia wykraczała poza obszar roboczy więc, została zmniejszona');
+        //     $('#angle')[0].value = Math.floor(Math.atan(height/950)*(180/Math.PI));
+        //     confirm_a();
+        // }
+        this.nameSpace.strokeWeight(this.size+5);
+        this.nameSpace.point(this.first.x, this.first.y);
+        this.nameSpace.point(this.second.x, this.second.y);
+        this.nameSpace.point(this.third.x, this.third.y);
+        this.nameSpace.strokeWeight(this.size);
+        this.nameSpace.triangle(this.first.x, this.first.y, this.second.x, this.second.y, this.third.x, this.third.y);
     }
 }
 
-function drawArrow(base, vec, myColor,nameSpace) {
-    if(vec.mag() === 0)
+export function drawArrow(base, vec, myColor, nameSpace) {
+    if(vec.mag() < 1)
     {
     }else {
         nameSpace.push();
@@ -212,4 +211,11 @@ function drawArrow(base, vec, myColor,nameSpace) {
         nameSpace.triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
         nameSpace.pop();
     }
+}
+export function degrees_to_radians (degrees) {
+    return degrees * (Math.PI / 180);
+}
+export function roundPrecised(number, precision) {
+    let power = Math.pow(10, precision);
+    return Math.round(number * power) / power;
 }

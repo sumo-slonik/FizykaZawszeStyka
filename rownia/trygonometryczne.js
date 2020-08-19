@@ -10,7 +10,7 @@ export default class tryg {
             name.printSin = function()
             {
                 name.angleP = 0;
-                for (name.i = 0;name.i<=100;name.i+=0.08)
+                for (name.i = 0;name.i<=100;name.i+=0.1)
                 {
                     name.x_poseP = 27+name.i*1.9;
                     name.angleP = name.degrees_to_radians(name.i*0.9);
@@ -28,14 +28,23 @@ export default class tryg {
                 }
             }
             name.preload = function () {
-                name.obrazek = loadImage('img/tryg.jpg');
+               if (is_sin)
+               {
+                   name.obrazek = loadImage('img/sin.png');
+
+               }
+               else
+               {
+                   name.obrazek = loadImage('img/cos.png');
+
+               }
             }
             name.setup = function () {
                 name.myCanvas = name.createCanvas(250,250);
             }
             name.draw = function () {
                 name.background(name.obrazek);
-                name.printSin();
+                // name.printSin();
                 name.strokeWeight(10);
                 name.stroke("red");
                 // name.point(227,230); //y0 = 230 x0 =25 skok = 50

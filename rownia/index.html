@@ -8,6 +8,7 @@
     <script src="./sketch.js"></script>
     <script type="module" src="./main.js"></script>
     <script type="module" src="ItemsLibrary.js"></script>
+    <title>Równia pochyła - tutorial</title>
 </head>
 <body>
 <div style="float: left;">
@@ -144,31 +145,42 @@
 
                 <div class="inputContainerContent">
                     <div class="infoContent"> masa klocka [kg]</div>
-                    <input id="massContent" type="text" class="input" placeholder="Wpisz mase klocka">
-                    <input type="range" id="rangeAngleContent" class="ranger">
-                    <button class="input" id="massButtonContent">
+                    <input id="upadekMass" type="text" class="input" placeholder="Wpisz mase klocka">
+                    <input type="range" id="rangeMassContent" class="ranger">
+                    <button class="input" id="massButtonUpadek">
                         <i class="icon-ok"> </i>
                     </button>
-                    <div class="info" id="infoMassContent"> Liczba z przedziału (0;10)</div>
+                    <div class="info" id="infoMassUpadek"> Liczba z przedziału (0;10)</div>
                 </div>
+                <div class="con_for_input_wektor">
+                    <div class="info1"><b>Pokaż wektory </b></div>
+                    <input id="grawitacjaUpadek" type="checkbox" class="wektorShow">
+                    <i class="wektorShow"> Siła gravitacji</i>
+                    <div class="clear"></div>
+                    <input id="przyspieszenieUpadek" type="checkbox" class="wektorShow">
+                    <i class="wektorShow"> Przyśpieszenie</i>
+                    <div class="clear"></div>
+                    <input id="predkoscieUpadek" type="checkbox" class="wektorShow">
+                    <i class="wektorShow"> Predkosc</i>
+                </div>
+
                 <div id="control" class="wrap">
 
-                    <div id="Start" class="controls">
-                        <button class="btn" id="startButton">
+                    <div id="StartUpadek" class="controls">
+                        <button class="btn" id="startButtonUpadek">
                             <i class="icon-play"> </i>
                         </button>
                     </div>
-                    <div id="Pause" class="controls">
-                        <button class="btn" id="pauseButton">
+                    <div id="PauseUpadek" class="controls">
+                        <button class="btn" id="pauseButtonUpadek">
                             <i class="icon-pause"> </i>
                         </button>
                     </div>
-                    <div id="Reset" class="controls">
-                        <button class="btn" id="resetButton">
+                    <div id="ResetUpadek" class="controls">
+                        <button class="btn" id="resetButtonUpadek">
                             <i class="icon-to-start"> </i>
                         </button>
                     </div>
-                    <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
 
@@ -190,30 +202,41 @@
             </h2>
         </div>
         <div class="tresc">
-            Równia pochyła jest maszyną prostą (tak prostą jak zadania z nią związane)<br>
+            Równia pochyła jest maszyną prostą (tak prostą jak zadania z nią związane)
+            Zauważmy, że po rozłożeniu siły grawitacji na składową prostopadłą do powierzchni równi
+            (nazywaną tutaj siłą nacisku) i składową równoległą do powierzchni równi (nazwyaną tutaj siłą zsuwającą)
+            otrzmujemy trujkąt podobny do tego reprezuntującego naszą równie. Powstały ze skłądowych sił trójkąt jest prostokątkny
+            więc opisują go zależnośći trugonometryczne w następującej postaci : <br>
+            Fn = Fg*cos(alfa) <br>
+            Fs = Fg * sin(alfa) <br>
+            Zgodnie możemy to zapamiętać w sposób dość intuicyjny nim więkrzy kąt tym ciało bardziej się zsówa, a to właśnie sinus
+            rośnie w przedziale (0,90), analogiczne wyjaśnienie mozemy podać dla siły nasiku która jest maksymalna dla 0°, a minimalna
+            dla 90° i to sinus jest malejący w przedziale (0,90). Wszystko można zobaczyć na dołączonej animacji, obok zaznaczony jest
+            aktualnie wybrany kąt na wykresie funkcji sin i cos na przedziale (0,90), a obok możemy zobaczyć jak ten kąt wpływa na składowe
+            sły grawitacji, warto zauważyć że siła grawitacji jest zawsze taka sama (bo nie zależy od kąta, a od masy klocka).
 
             <div id="test" class="inputContainerContent" style="float: left">
                 <div class="infoContent"> kąt nachylenia równi [°]</div>
-                <input id=angleAnimMin" type="text" class="input" placeholder="Wpisz kąt nachylenia równi">
+                <input id="angleAnimMin" type="text" class="input" placeholder="Wybierz kąt nachylenia">
                 <input type="range" id="rangeAngleAnimMin" class="ranger">
                 <div class="info" id="infoAngleAnimMin"> Liczba z przedziału (0;90)</div>
             </div>
             <div class="con_for_input_wektor" style="float: left">
                 <div class="info1"><b>Pokaż wektory sił</b></div>
-                <input id="frictionV" type="checkbox" class="wektorShow">
-                <i class="wektorShow"> Siła tarcia</i>
                 <div class="clear"></div>
-                <input id="gravityV" type="checkbox" class="wektorShow">
+                <input id="gravityAnim" type="checkbox" class="wektorShow">
                 <i class="wektorShow"> Siła grawitacji</i>
                 <div class="clear"></div>
-                <input id="pressV" type="checkbox" class="wektorShow">
+                <input id="pressAnim" type="checkbox" class="wektorShow">
                 <i class="wektorShow"> Siła nacisku</i>
                 <div class="clear"></div>
-                <input id="sliceV" type="checkbox" class="wektorShow">
+                <input id="sliceAnim" type="checkbox" class="wektorShow">
                 <i class="wektorShow"> Siła zsuwająca</i>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>
+        </div>
+        <div style="float: left" id="rozklad">
             <div id="wykresy"></div>
             <div id="sinWykres" class="tryg">
                 <div id="skrypt_sin"></div>
@@ -222,10 +245,10 @@
                 <div id="skrypt_cos"></div>
             </div>
             <div class="clear"></div>
-        </div>
         <div id="animacja_rozklad_sil" class="animacje_pomocnicze">
             <div id="skrypt_rozklad"></div>
             <div class="clear"></div>
+        </div>
         </div>
         <div class="clear"></div>
         <div class="title">

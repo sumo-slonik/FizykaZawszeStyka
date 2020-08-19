@@ -121,7 +121,7 @@ body{
 }
 .controls{
 	float: left;
-	margin-left: 20px;
+	margin-left: 15px;
 }
 .btn {
 	width: 50px;
@@ -230,7 +230,7 @@ body{
 	margin:auto;
 	width: 606px;
 	min-width: 606px;
-	min-height: 598px;
+	min-height: 900px;
 	background: radial-gradient(#111111, #051045);
 	float: left;
 }
@@ -239,9 +239,6 @@ body{
 	background: conic-gradient(#111111, #051045);
 	min-height: 598px;
 }
-
-
-
 button{
 	cursor: pointer;
 }
@@ -296,12 +293,17 @@ header a {
 }
 .tryg{
 	float: left;
-	margin: 25px;
+	margin-left: 22px;
+	margin-right: 22px;
+	margin-bottom: 10px;
 	min-height: 250px;
 	min-weight: 250px;
 	height: 250px;
 	width: 250px;
-	background: red;
+}
+#rozklad{
+	transform: scale(0.85,0.85);
+
 }
 #test{
 }
