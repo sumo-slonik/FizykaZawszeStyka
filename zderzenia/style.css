@@ -4,15 +4,20 @@ html{
 }
 body{
     margin: 0px;
-    height: 100vh;
-    background-color: #231f1f;
+    height: 200%;
+    background-color: #000066;
     color: rgba(232, 232, 233, 0.9);
     text-align: center;
-    background-image: url("background3.png");
-    background-size: 50% 50%;
 }
+#particles-js{
+    background: #000066;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
 #check{
-    margin: 0px;
+    margin: auto;
     width: 100%;
     height: 5%;
     position: center;
@@ -21,12 +26,19 @@ body{
 #first{
     display: inline-block;
 }
-
 #second{
     display: inline-block;
     margin: auto;
 }
+#third {
+    display: inline-block;
+}
+
 input[type=radio] {
+    width: 15px;
+    height: 15px;
+}
+input[type=checkbox] {
     width: 15px;
     height: 15px;
 }
@@ -42,7 +54,8 @@ input[type=radio] {
     height: 100vh;
     margin: auto;
     margin-bottom: 0px;
-    position: relative;
+    position: absolute;
+    margin-left: 12.5%;
     padding: 5px;
     overflow: hidden;
 }
@@ -84,26 +97,34 @@ h1 {
 
 input{
     height: 10%;
-    width: 50%;
+    width: 40%;
     box-shadow: inset 0px 0px 5px 3px rgba(69,74,92,1);
     text-align: center;
     font-weight: bold;
 }
 
-.firstBall{
+#firstBall{
     height: 20%;
-    width: 50%;
+    width: 33%;
     float:left;
     color: aliceblue;
     margin: auto;
 
 }
-.secondBall{
+#secondBall{
     height: 20%;
-    width: 50%;
-    float: right;
+    width: 33%;
     color: aliceblue;
     margin: auto;
+    float: left;
+}
+
+.thirdSituation{
+    height: 20%;
+    width: 33%;
+    float: right;
+    color: aliceblue;
+    margin: 0;
 }
 
 #canvas {
@@ -174,4 +195,3 @@ buttons:active {
     background: radial-gradient(ellipse at center, #312b2b 0, #464650, #5b665b 100%);
     box-shadow: #231f1f;
 }
-
