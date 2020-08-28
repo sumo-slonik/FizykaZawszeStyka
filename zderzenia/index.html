@@ -12,25 +12,29 @@
 
 </head>
 <body>
+    <a name = "up"></a>
     <div id = "particles-js">
         <div id = "container">
             <div id = "title">
                 <h1>ZDERZENIA</h1>
             </div>
             <div id = "check">
-                <div id = "first">
+                <div class = "checkAndBoxes">
                     <label><input type = "radio" id = "zderzenie_sprezyste" name = "zderzenie" onchange = "change()" value = "Zderzenie_sprezyste" checked>Zderzenie sprezyste</label>
                 </div>
-                <div id = "second">
+                <div class = "checkAndBoxes">
                     <label><input type = "radio" id = "zderzenie_niesprezyste" name = "zderzenie" onchange = "change()" value = "Zderzenie_niesprezyste">Zderzenie niesprezyste</label>
                 </div>
-                <div id = "third">
+                <div class = "checkAndBoxes">
                     <label><input type = "checkbox" id = "vector" name = "wektory" value = "Przeciwne_kierunki">Przeciwne kierunki</label>
+                </div>
+                <div class = "checkAndBoxes">
+                    <label><input type = "checkbox" id = "v_zero" name  = "wektory" value = "Zerowa_predkosc">V początkowa = 0 [m/s]</label>
                 </div>
             </div>
 
             <div id = "main">
-                <div id = "firstBall">
+                <div class = "valueForBall">
                     <div class = "input">
                         <div class = "info1">Prędkość 1-szej kulki [m/s]</div>
                         <input id = "velocity1" type = "text" class = "input">
@@ -42,7 +46,7 @@
                         <button class = "okButton" id = "wButton" onclick = "getValue('weight1')">OK</button>
                     </div>
                 </div>
-                <div id = "secondBall">
+                <div class = "valueForBall">
                     <div class = "input">
                         <div class = "info1">Prędkość 2-giej kulki [m/s]</div>
                         <input id = "velocity2" type = "text" class = "input">
@@ -51,14 +55,17 @@
                     <div class = "input">
                         <div class = "info1">Waga 2-giej kulki [kg]</div>
                         <input id = "weight2" type = "text" class = "input">
-                        <button class = "okButton" id = "wButton2" onclick = "getValue('weight2'); findResult(); firstLoop()">OK</button>
+                        <button class = "okButton" id = "wButton2" onclick = "getValue('weight2'); findResult();">OK</button>
                     </div>
                 </div>
-                <div class = "thirdSituation">
+                <div class = "vAfterCollision">
                     <div class = "info1">Prędkość po zderzeniu <br>kulek o przeciwnych <br>kierunkach [m/s]</div>
                     <input id = "velocity3" type = "text" class = "input">
                 </div>
-                <!--Miejsce na canvas-->
+                <div id = "clear">
+                    <button class = "okButton" id = "clearButton" onclick = "deleteValue()">Wyczyść</button>
+                </div>
+
                 <div id = "canvas">
                     <script type = "text/javascript">
                         afterLoad();
@@ -78,18 +85,247 @@
                         <i class = "icon-to-start"></i>
                     </button>
                 </div>
-
             </div>
+        </div>
+        <div class = "exercises" id = "firstDiv" title = "Zderzenia sprężyste">
+            <h2>
+                Zderzenia sprężyste
+            </h2>
+            <p>
+                Ze zderzeniami sprężystymi mamy do czynienia, gdy zachowane są dwie zasady:
+                <br>
+                - Zasada zachowania całkowitego pędu
+                <br>
+                - Zasada zachowania energii układu
+                <br><br>
+                Rozwiązaując zadania ze zderzeń korzystamy z zależności:
+            </p>
+            <p class = "formula">
+                masa1 * prędkość1 = masa2 * prędkość2<br>
+            </p>
+            <p>
+                Oraz z:
+                <br>
+            </p>
+            <p class = "formula">
+                   E. KINETYCZNA_PRZED = E. KINETYCZNA_PO
+            </p>
+
+            <p>
+                <br>
+                PRZYKŁADOWE ZADANIE NR 1:
+                <br>
+                Dwie kulki o jednakowych masach m1 = m2 = 10 kg poruszają się po wspólnej prostej.
+                Prędkość pierwszej kulki v1 = 10 m/s, a prędkość drugiej kulki v2 = 30 m/s.
+                Oblicz prędkości tych kulek po zderzeniu.
+                <br><br><br>
+                ROZWIĄZANIE:
+                <br>
+                Dane:
+                <br>
+                m1 = m2 = 10 kg
+                <br>
+                v1 = 10 m/s
+                <br>
+                v2 = 30 m/s
+                <br><br>
+                Szukamy prędkości tych kulek po zderzeniu. Oznaczmy je jako u1 oraz u2.
+                <br>
+                Masy kulek są równe, więc kulki wymienią się prędkościami:
+                <br><br>
+                u1 = v2 = 30 m/s
+                <br>
+                u2 = v1 = 10 m/s
+            </p>
+            <a href = "#up"><p class = "animationInfo">
+                Wpisz odpowiednie dane i zobacz animację...
+                <br>
+            </p></a>
+            <p>
+                <br><br>
+                PRZYKŁADOWE ZADANIE NR 2:
+                <br>
+                Dane są dwie kulki o jednakowych masach m1 = m2 = 10 kg. Obie znajdują się na jednej prostej.
+                Pierwsza kulka porusza się z prędkością v1 = 10 m/s. Prędkość początkowa drugiej kulki
+                jest równa v2 = 0 m/s. Kulki zderzyły się ze sobą centralnie sprężyście.
+                <br>
+                Znajdź prędkości kulek po zderzeniu
+                <br><br><br>
+                ROZWIĄZANIE:
+                <br>
+                Dane:
+                <br>
+                m1 = m2 = 10 kg
+                <br>
+                v1 = 10 m/s
+                <br>
+                v2 = 0 m/s
+                <br>
+                Szukane:
+                <br>
+                u1, u2 = ?
+                <br><br>
+                Kulki zderzyły się całkowicie sprężyście oraz mają równe masy.
+                <br>
+                W tej sytuacji pierwsza kulka zatrzymuje się, a druga porusza się z prędkością u2 = v1 = 10 m/s.
+                <br>
+                u1 = 0 m/s
+            </p>
+            <a href = "#up"><p class = "animationInfo">
+                Wpisz odpowiednie dane i zobacz animację...
+                <br>
+            </p></a>
+            <p>
+                <br><br><br>
+                PRZYKŁADOWE ZADANIE NR 3:
+                <br>
+                Dane są dwie kulki. Masa pierwszej jest dużo mniejsza od masy drugiej kulki.
+                Odpowiednio: m1 = 10 kg, m2 = 50 kg. Prędkość początkowa pierwszej kulki to v1 = 30 m/s
+                Prędkość początkowa drugiej kulki to v2 = 0 m/s.
+                <br>
+                Znajdź prędkości kulek po zderzeniu.
+                <br><br><br>
+                ROZWIĄZANIE:
+                <br>
+                Dane:
+                <br>
+                m1 = 10 kg
+                <br>
+                m2 = 50 kg
+                <br>
+                v1 = 30 m/s
+                <br>
+                v2 = 0 m/s
+                <br><br>
+                Szukamy prędkości obu kulek po zderzeniu.
+                <br>
+                W powyższej sytuacji kulka o mniejszej masie odbije się od kulki o większej masie.
+                <br>
+                Wtedy znak prędkości pierwszej kulki zmieni się na przeciwny. A kulka druga nadal
+                pozostanie w spoczynku.
+                <br><br>
+                Zatem:
+                <br>
+                u1 = -v1 = -30 m/s
+                <br>
+                u2 = 0 m/s
+            </p>
+            <a href = "#up"><p class = "animationInfo">
+                Wpisz odpowiednie dane i zobacz animację...
+                <br>
+            </p></a>
+            <p>
+                <br><br><br>
+                PRZYKŁADOWE ZADANIE NR 4:
+                <br>
+                Dane są dwie kulki. Masa pierwszej jest dużo większa od masy drugiej kulki.
+                Odpowiednio: m1 = 50 kg, m2 = 10 kg. Prędkość początkowa pierwszej kulki to v1 = 20 m/s
+                Prędkość początkowa drugiej kulki to v2 = 0 m/s.
+                <br>
+                Znajdź prędkości kulek po zderzeniu.
+                <br><br><br>
+                ROZWIĄZANIE:
+                <br>
+                Dane:
+                <br>
+                m1 = 50 kg
+                <br>
+                m2 = 10 kg
+                <br>
+                v1 = 20 m/s
+                <br>
+                v2 = 0 m/s
+                <br><br>
+                Szukamy prędkości obu kulek po zderzeniu.
+                <br>
+                W tej sytuacji pierwsza kulka prawie nie zmieni swojej prędkości. Więc możemy przyjąć,
+                że prędkość po zderzeniu jest taka sama jak prędkość początkowa.
+                <br>
+                Prękość drugiej kulki po zderzeniu ulegnie zmianie. Będzie ona równa u2 = 2 * v1
+                <br><br>
+                Zatem:
+                <br>
+                u1 = v1 = 20 m/s
+                <br>
+                u2 = 2 * v1 = 2 * 20 m/s = 40 m/s
+            </p>
+            <a href = "#up"><p class = "animationInfo">
+                Wpisz odpowiednie dane i zobacz animację...
+                <br>
+            </p></a>
+            <p>
+                <br><br><br>
+                PRZYKŁADOWE ZADANIE NR 5:
+                <br>
+                Dwie kulki zbliżają się do siebie wzdłuż wspólnej prostej, m1 =
+            </p>
+            <a href = "#up"><p class = "animationInfo">
+                Wpisz odpowiednie dane i zobacz animację...
+                <br>
+            </p></a>
+
+
+        </div>
+        <div class = "exercises" id = "secondDiv" title = "Zderzenia niesprężyste">
+            <h2>
+                Zderzenia niesprężyste
+            </h2>
+            <p>
+                Zderzenia niespręzyste to takie, kiedy po zetknięciu oba ciała zlepiają się ze sobą tworząc
+                w ten sposób jedno ciało o masie równej sumie ich początkowych mas.
+                <br>
+                Rozwiązując zadania korzystamy ze znanych nam zasad zachowania pędu oraz energii kinetycznej.
+            </p>
+            <p>
+                <br><br>
+                ZADANIE 1:
+                <br>
+                Kulka o masie 20 kg i prędkości początkowej = 10 m / s zderza się z kulką o masie 30 kg
+                i prędkości początkowej = 0 m/s.
+                <br>
+                Oblicz jaka będzie prędkość kulek po zderzeniu, jeżeli wiemy, że jest ono niesprężyste.
+                <br><br><br>
+                ROZWIĄZANIE:
+                <br>
+                Dane:
+                <br>
+                m1 = 20 kg
+                <br>
+                m2 = 30 kg
+                <br>
+                v1 = 10 m/s
+                <br>
+                v2 = 0 m/s
+                <br><br>
+                Aby obliczyć prędkość "zlepionych" kulek skorzystamy z zasady zachowania pędu:
+                <br>
+            </p>
+            <p class = "formula">
+                masa1 * prędkość1 = masa2 * prędkość2<br>
+            </p>
+            <p>
+                20 kg * 10 m/s = v * (20 kg + 30 kg)
+                <br>
+                v = 200 / 50
+                <br>
+                v = 4 m/s
+            </p>
+            <a href = "#up"><p class = "animationInfo">
+                Wpisz odpowiednie dane i zobacz animację...
+                <br>
+            </p></a>
+
         </div>
     </div>
 
-
+<!--
     <script src = "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         particlesJS.load('particles-js', 'particles.json', function(){
             console.log('loaded...');
         });
     </script>
+    -->
 
 </body>
 </html>

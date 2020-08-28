@@ -1,51 +1,26 @@
-html{
+html {
     margin: 0px;
     height: 100vh;
 }
-body{
+body {
     margin: 0px;
-    height: 200%;
+    height: 400%;
     background-color: #000066;
     color: rgba(232, 232, 233, 0.9);
     text-align: center;
 }
-#particles-js{
+
+#particles-js {
     background: #000066;
-    height: 100%;
+    height: 300%;
     width: 100%;
     background-repeat: no-repeat;
+    position: relative;
 }
 
-#check{
-    margin: auto;
-    width: 100%;
-    height: 5%;
-    position: center;
-    padding: 0.25%;
-}
-#first{
-    display: inline-block;
-}
-#second{
-    display: inline-block;
-    margin: auto;
-}
-#third {
-    display: inline-block;
-}
-
-input[type=radio] {
-    width: 15px;
-    height: 15px;
-}
-input[type=checkbox] {
-    width: 15px;
-    height: 15px;
-}
-
-#container{
-    box-shadow: 0px 0px 86px -22px rgba(91,95,110,1);
-    -moz-box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);
+#container {
+    box-shadow: 0px 0px 30px 30px rgba(0,0,0,0.8);
+    /*-moz-box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.8);*/
     width: 75%;
     background-color: #5b5f6e;
     border-radius: 15px;
@@ -53,23 +28,15 @@ input[type=checkbox] {
     border-width: 10px;
     height: 100vh;
     margin: auto;
-    margin-bottom: 0px;
+    margin-top: 20px;
     position: absolute;
-    margin-left: 12.5%;
+    margin-left: 10%;
+    margin-right: 10%;
     padding: 5px;
     overflow: hidden;
+    clear: both;
 }
 
-.okButton {
-    font-weight: bold;
-}
-
-#title{
-    background-color:#454a5c;
-    width: 100%;
-    height: 8%;
-    font-size: 100%;
-}
 h1 {
     text-align : center;
     margin: auto;
@@ -77,7 +44,71 @@ h1 {
     padding: 1%;
 }
 
-#main{
+h2 {
+    font-size: 40px;
+    margin: 2%;
+    padding: 1%;
+    background-color: #00011E;
+    box-shadow: 0px 0px 5px 5px rgb(128,128,128);
+    letter-spacing: 3px;
+}
+
+p {
+    font-size: 18px;
+    text-align: left;
+    margin: 3%;
+}
+
+input {
+    width: 40%;
+    box-shadow: inset 0px 0px 5px 3px rgba(69,74,92,1);
+    text-align: center;
+    font-weight: bold;
+}
+
+input[type=radio], input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+}
+
+.formula {
+    font-size: 22px;
+    color: red;
+    font-weight: bold;
+}
+
+.animationInfo{
+    font-size: 15px;
+    color: chartreuse;
+}
+
+#check {
+    margin: auto;
+    width: 100%;
+    height: 5%;
+    position: center;
+    padding: 0.25%;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.checkAndBoxes {
+    display: inline-block;
+}
+
+.okButton {
+    font-weight: bold;
+}
+
+#title {
+    background-color: #454a5c;
+    width: 100%;
+    height: 8%;
+    font-size: 100%;
+}
+
+#main {
     height: 72.5%;
     width: 95%;
     margin: auto;
@@ -87,7 +118,7 @@ h1 {
     color: rgba(232, 232, 233, 0.9);
 }
 
-.info1{
+.info1 {
     font-size: 90%;
     margin: auto;
     box-shadow: 0px 0px 16px 12px rgba(69,74,92,1);
@@ -95,36 +126,36 @@ h1 {
     border-radius: 15px;
 }
 
-input{
-    height: 10%;
-    width: 40%;
-    box-shadow: inset 0px 0px 5px 3px rgba(69,74,92,1);
-    text-align: center;
-    font-weight: bold;
-}
-
-#firstBall{
+.valueForBall {
     height: 20%;
     width: 33%;
     float:left;
     color: aliceblue;
     margin: auto;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
 
 }
-#secondBall{
-    height: 20%;
-    width: 33%;
-    color: aliceblue;
-    margin: auto;
-    float: left;
-}
 
-.thirdSituation{
+.vAfterCollision{
     height: 20%;
-    width: 33%;
+    width: 20%;
     float: right;
     color: aliceblue;
+    margin: auto;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+#clear {
+    width: 14%;
     margin: 0;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding-top: 30px;
 }
 
 #canvas {
@@ -134,7 +165,7 @@ input{
     margin-bottom: 10%;
 }
 
-#menu{
+#menu {
     height: 15%;
     width: 100%;
     background-color:#454a5c;
@@ -148,7 +179,7 @@ input{
     padding: 5px;
     margin: auto;
 }
-button{
+button {
     box-shadow: inset 0px 0px 5px 3px rgba(69,74,92,1);
     margin: 0px;
     border-radius: 30px;
@@ -156,10 +187,11 @@ button{
     -webkit-transition:all 0.3s ease;
 }
 
-button:hover{
+button:hover {
     background-color: #b3d0ff;
 }
-#start, #pause, #stop{
+
+.menuButton {
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -168,22 +200,10 @@ button:hover{
     background: radial-gradient(ellipse at center, #312b2b 0, #464650, #5b665b 100%);
     -webkit-transition:all 0.3s ease;
     box-shadow: #231f1f;
-}
-
-
-.menuButton{
-    width: 10%;
-    height: 75%;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 1px solid #535050;
-    background: radial-gradient(ellipse at center, #312b2b 0, #464650, #5b665b 100%);
-    -webkit-transition:all 0.3s ease;
-    box-shadow: #231f1f;
     margin: 0px;
 }
 
-buttons:hover{
+buttons:hover {
     background-color: #b3d0ff;
 }
 
@@ -194,4 +214,61 @@ buttons:active {
     outline: none;
     background: radial-gradient(ellipse at center, #312b2b 0, #464650, #5b665b 100%);
     box-shadow: #231f1f;
+}
+
+.exercises {
+    height: 150vh;
+    width: 75%;
+    background-color: #010131;
+    color: #f0f8f0;
+    box-shadow: 0px 0px 3px 3px white, 0px 0px 20px 20px black;
+    position: absolute;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 0%;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+#firstDiv{
+    margin-top: 100%;
+    height: 100vh;
+}
+
+#secondDiv {
+    margin-top: 250%;
+}
+
+/* --scrollBar--
+funkcja nie jest obsługiwana przez każdą przeglądarkę*/
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+    border-radius: 10px;
+    background-color: #CCCCCC;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: white;
+    background-image: -webkit-linear-gradient(90deg,
+    transparent,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent,
+    transparent)
+}
+
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: white;
 }
